@@ -8,12 +8,19 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.EmployeesView = Backbone.View.extend({
 
         initialize: function() {
-          // TODO: Filter this to one company_id
+          // TODO: Filter this to one company_id => the user's company id or the company the admin is viewing
           this.collection = new bridgelyApp.Collections.EmployeesCollection(),
 
           this.listenTo(this.collection, "change add", this.render);
 
           this.collection.fetch();
+
+          // var that = this;
+          // this.collection.sync( 'read', this.collection, {
+          //   success: function(data) {
+          //     that.collection.add(data);
+          //   }
+          // });
         },
         // template: JST['app/scripts/templates/employees.ejs'],
         columns: [{
