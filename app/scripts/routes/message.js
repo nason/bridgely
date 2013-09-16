@@ -13,6 +13,7 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       },
       newMessage: function() {
         console.log('new message route!!');
+        $('#content').html( new bridgelyApp.Views.newMessageView().render() )
       },
       viewMessage: function(id) {
         if( id === undefined || !Number(id) ) {
