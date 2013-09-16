@@ -8,7 +8,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.newMessageView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/newMessage.ejs'],
-        el: 'form',
+        el: $('<form />'),
         render: function() {
           return this.$el.html( this.template );
         }

@@ -14,15 +14,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.listenTo(this.collection, "change add", this.render);
 
           this.collection.fetch();
-
-          // var that = this;
-          // this.collection.sync( 'read', this.collection, {
-          //   success: function(data) {
-          //     that.collection.add(data);
-          //   }
-          // });
         },
-        // template: JST['app/scripts/templates/employees.ejs'],
         columns: [{
             name: 'selected',
             label: '',
@@ -39,30 +31,37 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             label: "Phone",
             cell: "string",
             editable: false
-            //cell: Backgrid.IntegerCell.extend({
-              //orderSeparator: ''
-            //})
           }, {
             name: "tags",
             label: "Tags",
             cell: "string",
             editable: false,
             sortable: false
-          }],
-        render: function() {
-
-          // Initialize a new Grid instance
-          var employeesGrid = new Backgrid.Grid({
+        }],
+        employeesGrid: function() {
+          return new Backgrid.Grid({
             className: 'backgrid lead',
             columns: this.columns,
             collection: this.collection
+          })
+        },
+        render: function() {
+
+          // Initialize the paginator
+          var paginator = new Backgrid.Extension.Paginator({
+            collection: this.collection
           });
 
-          var sendButton = $('<button type="button" />').text('Send SMS Message').addClass('btn btn-lg btn-primary');
+          var $sendButton = $('<a href="#message" />').text('Send SMS Message').addClass('btn btn-lg btn-primary');
 
-          // Render the grid and attach the root to your HTML document
-          return this.$el.html( employeesGrid.render().$el.add(sendButton) );
+          var $layout = this.employeesGrid().render().$el
+          .add( paginator.render().$el )
+          .add( $sendButton )
+
+          return this.$el.html( $layout );
+
         }
+
 
     });
 
