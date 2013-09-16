@@ -7,7 +7,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
     bridgelyApp.Views.EmployeesView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/employees.ejs'],
         initialize: function() {
           // TODO: Filter this to one company_id
           this.collection = new bridgelyApp.Collections.EmployeesCollection(),
@@ -16,15 +15,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           this.collection.fetch();
         },
-        render: function() {
-
-          // var modelTemplates = _(this.collection.models).map(function(model) {
-          //   return new bridgelyApp.Views.EmployeeView({model: model}).render();
-          // }, this);
-
-          // return this.$el.html(modelTemplates);
-
-          var columns = [{
+        // template: JST['app/scripts/templates/employees.ejs'],
+        columns: [{
             name: 'selected',
             label: '',
             cell: 'boolean',
@@ -49,17 +41,20 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             cell: "string",
             editable: false,
             sortable: false
-          }];
+          }],
+        render: function() {
 
           // Initialize a new Grid instance
           var employeesGrid = new Backgrid.Grid({
             className: 'backgrid lead',
-            columns: columns,
+            columns: this.columns,
             collection: this.collection
           });
 
+          var sendButton = $('<button type="button" />').text('Send SMS Message').addClass('btn btn-lg btn-primary');
+
           // Render the grid and attach the root to your HTML document
-          return this.$el.html(employeesGrid.render().el);
+          return this.$el.html( employeesGrid.render().$el.add(sendButton) );
         }
 
     });
