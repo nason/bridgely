@@ -10,7 +10,7 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
         model: bridgelyApp.Models.EmployeeModel,
         url: "http://localhost:3000/v1/employees",
         state: {
-          pageSize: 3
+          pageSize: 10
         },
         mode: "client" // page entirely on the client side
 

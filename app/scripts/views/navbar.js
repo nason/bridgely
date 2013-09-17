@@ -12,6 +12,18 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         render: function() {
           return this.$el.html(this.template)
         }
+        // This almost gets the menu toggles working
+        // initialize: function() {
+        //   var that = this;
+        //   this.$el.on('click', function(e) {
+        //     that.toggleSelected($(e.target).closest('li'));
+        //   });
+        // },
+        // toggleSelected: function(el) {
+        //   console.log(el)
+        //   $(el).addClass('active');
+        //   $(el).siblings().removeClass('active');
+        // }
 
     });
 
