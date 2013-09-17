@@ -52,7 +52,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
-          var $sendButton = $('<a href="#message" />').text('Send SMS Message').addClass('btn btn-lg btn-primary');
+          var $sendButton = $('<a href="#message" />').text(' Send SMS Message').prepend($('<span class="glyphicon glyphicon-send" />')).addClass('btn btn-lg btn-primary');
 
           var $layout = this.employeesGrid().render().$el
           .add( paginator.render().$el )
