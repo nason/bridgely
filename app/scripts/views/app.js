@@ -10,8 +10,18 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         initialize: function() {
           $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
             // Your server goes below
-            //options.url = 'http://localhost:3000' + options.url;
+            // options.url = 'http://localhost:3000' + options.url;
+
+            // var token = $("meta[name='Authorization']").attr("Token")
+            // jqXHR.setRequestHeader("Authorization", "Token token='t6zKGB6VuMpq8kxtvicuV2hrGChohVf2EtEK99Jq'")
+
           });
+
+          // Rails CSRF Protection
+          // $(document).ajaxSend(function (e, xhr, options) {
+          //   var token = $("meta[name='csrf-token']").attr("content");
+          //   xhr.setRequestHeader("X-CSRF-Token", token);
+          // });
         },
 
         template: JST['app/scripts/templates/app.ejs'],

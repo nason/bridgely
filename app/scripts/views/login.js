@@ -11,6 +11,13 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         className: 'form-login',
         render: function() {
           return this.$el.html(this.template);
+        },
+        events: {
+          'submit' : 'login'
+        },
+        login: function(event){
+          event.preventDefault();
+          bridgelyApp.session.login( this.$el.find('#email').val(), this.$el.find('#password').val() )
         }
 
 
