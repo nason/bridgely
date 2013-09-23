@@ -9,11 +9,8 @@ bridgelyApp.Models = bridgelyApp.Models || {};
 
     bridgelyApp.Models.SessionModel = Backbone.Model.extend({
       defaults: {
-        "user_id":  null,
-        "name":  null,
-        "email": null,
-        "auth_token":  null,
-        "company":  null
+        "account": null,
+        "auth_token":  null
       },
       url: function() {
         return bridgelyApp.apiUrl + '/auth';
@@ -33,7 +30,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           url: this.url()+'/login',
           data: {session: {email: email, password: password}},
           success: function(data) {
-            session.save( data.account.id, data.account.name, data.auth_token );
+            session.save( data.account, data.auth_token );
             session.load();
             bridgelyApp.appView.trigger('authenticated');
           },
@@ -58,19 +55,17 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           });
         }
       },
-      save: function(user_id, name, auth_token) {
+      save: function(account, auth_token) {
         // Save the auth_token into browser localstorge / cookie
         this.storage.setItem('t', auth_token );
-        this.storage.setItem('i', user_id );
-        this.storage.setItem('n', name );
+        this.storage.setItem('a', JSON.stringify(account) );
       },
       load : function() {
         // Load from browser localstorge / cookie into model
         if (this.storage.length > 0) {
           this.set({
             auth_token: this.storage.getItem('t'),
-            user_id: this.storage.getItem('i'),
-            name: this.storage.getItem('n')
+            account: JSON.parse( this.storage.getItem('a') )
           });
         } else {
           return;
@@ -80,8 +75,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         this.storage.clear();
         this.set({
           auth_token: null,
-          user_id: null,
-          name: null
+          account: null
         });
       }
     });
