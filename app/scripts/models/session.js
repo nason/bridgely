@@ -51,7 +51,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
             headers: {
               'Authorization' : 'Token token=' + session.get('auth_token')
             },
-            success: function() {
+            complete: function() {
               session.destroy();
               bridgelyApp.LoginRouter.navigate('', {trigger: true})
             }

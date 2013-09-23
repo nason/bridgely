@@ -51,9 +51,9 @@ $(document).ready(function () {
     console.log('error',event, jqxhr, settings, exception)
     // Capture any ajax request that returns a 401 unauthorized and go to login page
     // On 403 forbidden go to denied page
-    // if (jqxhr.status === 401) {
-    //   window.location = '#login';
-    // } else if (jqxhr.status === 403) {
-    //   window.location = '#denied'
-    // }
+    if (jqxhr.status === 401) {
+      window.location = '#login';
+    } else if (jqxhr.status === 403) {
+      window.location = '#denied'
+    }
 });
