@@ -10,7 +10,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/newMessage.ejs'],
         el: $('<form />'),
         render: function() {
-          return this.$el.html( this.template );
+          this.$el.html( this.template );
+          $('#content').html( this.el );
+          return this.el;
         }
 
     });

@@ -9,12 +9,12 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       routes: {
         '' : 'index',
         'settings' : 'settings',
-        'company' : 'company',
-        '*catch' : 'index'
+        'company' : 'company'
+        // '*catch' : 'index'
       },
       index: function() {
         console.log('index route!!');
-        $('body').html(new bridgelyApp.Views.AppView().render())
+        $('body').html(bridgelyApp.appView.render())
       },
       settings: function() {
         console.log('settings route!!');

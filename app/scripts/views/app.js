@@ -8,20 +8,23 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.AppView = Backbone.View.extend({
 
         initialize: function() {
-          $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+          // $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
             // Your server goes below
             // options.url = 'http://localhost:3000' + options.url;
-
-            // var token = $("meta[name='Authorization']").attr("Token")
-            // jqXHR.setRequestHeader("Authorization", "Token token='t6zKGB6VuMpq8kxtvicuV2hrGChohVf2EtEK99Jq'")
-
-          });
+          // });
 
           // Rails CSRF Protection
           // $(document).ajaxSend(function (e, xhr, options) {
           //   var token = $("meta[name='csrf-token']").attr("content");
           //   xhr.setRequestHeader("X-CSRF-Token", token);
           // });
+
+
+          this.navbar = new bridgelyApp.Views.NavbarView();
+          this.footer = new bridgelyApp.Views.FooterView();
+
+          this.on('authenticated', this.authenticated, this);
+
         },
 
         template: JST['app/scripts/templates/app.ejs'],
@@ -29,19 +32,22 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         render: function() {
 
           // TODO: Authentication state and role determine the navmenu render and the company_id for the session
-          this.$el.attr('id', 'bridgely')
-          .html( this.template() );
-
-          // TODO: Where the LoginView is appended; where the current view should be loaded - depnding on auth and user
-          this.$el
-          .find('#content').html( new bridgelyApp.Views.LoginView().render() );
+          this.$el.html( this.template ).attr('id', 'bridgely');
 
           // Add the header and footer
-          this.$el
-          .prepend(new bridgelyApp.Views.NavbarView().render())
-          .append(new bridgelyApp.Views.FooterView().render());
+          // this.$el.prepend(navbar.render())
+          // this.$el.append(footer.render());
 
-          return this.el;
+          $('body').html(this.el);
+
+          this.$el.prepend(this.navbar.$el);
+          _.once( this.navbar.render() );
+
+          this.$el.append(this.footer.$el);
+
+        },
+        authenticated: function() {
+          bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
         }
 
     });

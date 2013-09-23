@@ -9,7 +9,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
       template: JST['app/scripts/templates/employee.ejs'],
       render: function() {
-        return this.$el.html(this.template(this.model.attributes));
+        this.$el.html(this.template(this.model.attributes));
+        return this.el;
       }
 
     });

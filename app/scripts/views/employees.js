@@ -32,7 +32,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             cell: "string",
             editable: false
           }, {
-            name: "tags",
+            name: "data",
             label: "Tags",
             cell: "string",
             editable: false,
@@ -58,7 +58,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           .add( paginator.render().$el )
           .add( $sendButton )
 
-          return this.$el.html( $layout );
+          this.$el.html( $layout );
+          $('#content').html( this.el );
+          return this.el;
 
         }
 

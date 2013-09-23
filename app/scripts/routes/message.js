@@ -6,6 +6,13 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
     'use strict';
 
     bridgelyApp.Routers.MessageRouter = Backbone.Router.extend({
+      requireLogin : function(ifYes) {
+        if (bridgelyApp.session.authenticated()) {
+          if (_.isFunction(ifYes)) ifYes.call(this);
+        } else {
+          bridgelyApp.LoginRouter.navigate('login', {trigger: true})
+        }
+      },
       routes: {
         'message' : 'newMessage',
         'message/:id' : 'viewMessage',
@@ -13,7 +20,11 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       },
       newMessage: function() {
         console.log('new message route!!');
-        $('#content').html( new bridgelyApp.Views.newMessageView().render() )
+
+        this.requireLogin(function() {
+          new bridgelyApp.Views.newMessageView().render();
+        })
+
       },
       viewMessage: function(id) {
         if( id === undefined || !Number(id) ) {

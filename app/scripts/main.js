@@ -10,12 +10,7 @@ window.bridgelyApp = {
         'use strict';
 
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
-
-        if(bridgelyApp.session.authenticated()) {
-            // redirect to landing page / mobile directory
-        } else {
-            // call a login form, that will call this.session.login(email,password)
-        }
+        bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
         // Override Backbone Sync
         var sync = Backbone.sync;
@@ -33,15 +28,17 @@ window.bridgelyApp = {
           sync(method, model, options);
         };
 
-
         // Initialize all the routers
-        _(bridgelyApp.Routers).each(function(router) {
-            new router();
+        _(bridgelyApp.Routers).each(function(router,name) {
+            bridgelyApp[name] = new router();
         });
-
         Backbone.history.start();
 
-        // $('body').html(new bridgelyApp.Views.AppView().render())
+        if( !bridgelyApp.session.authenticated() ) {
+            bridgelyApp.LoginRouter.navigate('login', {trigger: true})
+        } else {
+            bridgelyApp.appView.render();
+        }
 
         console.log('Hello from Bridgely!');
     }
@@ -51,8 +48,12 @@ $(document).ready(function () {
     'use strict';
     bridgelyApp.init();
 }).ajaxError( function(event, jqxhr, settings, exception ) {
+    console.log('error',event, jqxhr, settings, exception)
     // Capture any ajax request that returns a 401 unauthorized and go to login page
-    if (jqxhr.status == 401) {
-      window.location = '';
-    }
+    // On 403 forbidden go to denied page
+    // if (jqxhr.status === 401) {
+    //   window.location = '#login';
+    // } else if (jqxhr.status === 403) {
+    //   window.location = '#denied'
+    // }
 });

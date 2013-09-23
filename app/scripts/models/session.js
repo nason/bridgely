@@ -16,70 +16,73 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         "company":  null
       },
       url: function() {
-        return this.options.host + '/v1/auth';
+        return 'http://localhost:3000' + '/v1/auth';
       },
-      options: {
-        host: "http://localhost:3000",
-        store: null
-      },
-      initialize: function( options ) {
-        // _.bindAll(this);
-        options = options || {};
-        this.options = _.extend(this.options, options);
-
-        if( typeof localStorage != "undefined" && localStorage !== null ){
-          // choose localStorage
-          this.options.store = localStorage;
-        } else {
-          // otherwise we need to store data in a cookie
-          this.options.store = $.cookie;
-        }
+      initialize: function( ) {
+        this.storage = localStorage;
         this.load();
-
       },
       authenticated: function() {
+        console.log('Authenticated:', !!this.get('auth_token') )
         return !!this.get('auth_token');
       },
-      login: function(email, password, options) {
-        // use options to facilitate onAuthenticated and onNotAuthenticated callbacks
+      login: function(email, password) {
         var session = this;
         $.ajax({
           type: 'POST',
           url: this.url()+'/login',
           data: {session: {email: email, password: password}},
           success: function(data) {
-            console.log(data);
-            session.store( data.account.id, data.auth_token );
+            session.save( data.account.id, data.account.name, data.auth_token );
+            session.load();
+            bridgelyApp.appView.trigger('authenticated');
+          },
+          error: function() {
+            session.trigger('authentication-error');
           }
         });
       },
       logout: function() {
         if (this.authenticated()) {
-          delete this.options.store.i;
-          delete this.options.store.t;
-          this.set({
-            auth_token : null,
-            user_id : null
+          var session = this;
+          $.ajax({
+            type: 'DELETE',
+            url: this.url()+'/logout',
+            headers: {
+              'Authorization' : 'Token token=' + session.get('auth_token')
+            },
+            success: function() {
+              session.destroy();
+              bridgelyApp.LoginRouter.navigate('', {trigger: true})
+            }
           });
-          // TODO send delete to server
         }
       },
-      store: function(user_id, auth_token) {
+      save: function(user_id, name, auth_token) {
         // Save the auth_token into browser localstorge / cookie
-        // $.cookie('auth_token', auth_token)
-        this.options.store.setItem('t', auth_token );
-        this.options.store.setItem('i', user_id );
+        this.storage.setItem('t', auth_token );
+        this.storage.setItem('i', user_id );
+        this.storage.setItem('n', name );
       },
       load : function() {
-        // Load the above from browser localstorge / cookie
-        if (this.options.store.getItem('t') && this.options.store.getItem('i')) {
+        // Load from browser localstorge / cookie into model
+        if (this.storage.length > 0) {
           this.set({
-            auth_token : this.options.store.getItem('t'),
-            user_id : this.options.store.getItem('i')
+            auth_token: this.storage.getItem('t'),
+            user_id: this.storage.getItem('i'),
+            name: this.storage.getItem('n')
           });
         } else {
-          return false;
+          return;
         }
+      },
+      destroy: function() {
+        this.storage.clear();
+        this.set({
+          auth_token: null,
+          user_id: null,
+          name: null
+        });
       }
     });
 

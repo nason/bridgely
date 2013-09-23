@@ -10,7 +10,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/footer.ejs'],
         el: $('<footer/>'),
         render: function() {
-          return this.$el.html(this.template)
+          this.$el.html(this.template);
+          this.delegateEvents();
+        },
+        initialize: function() {
+          this.render();
         }
 
     });

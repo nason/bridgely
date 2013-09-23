@@ -10,12 +10,8 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         login : 'login'
       },
       login: function() {
-        console.log('login route!')
-      },
-      logout: function() {
-        console.log('logout route!')
+        $('#content').html( new bridgelyApp.Views.LoginView().el );
       }
-
     });
 
 })();

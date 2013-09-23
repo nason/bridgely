@@ -6,11 +6,27 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     'use strict';
 
     bridgelyApp.Views.NavbarView = Backbone.View.extend({
-
         template: JST['app/scripts/templates/navbar.ejs'],
-        el: $('<nav class="navbar navbar-default container" role=navigation />'),
+        el: $('<nav role="navigation" />'),
+        events: {
+          'click #logout' : 'signOut'
+        },
+        signOut: function(event) {
+          event.preventDefault();
+          bridgelyApp.session.logout();
+        },
         render: function() {
-          return this.$el.html(this.template)
+          this.$el.addClass("navbar navbar-default container");
+          this.$el.html( this.template() );
+          this.delegateEvents();
+        },
+        initialize: function() {
+          this.render();
+
+          // Re-render when the session changes
+          bridgelyApp.session.on('change', function() {
+            this.render();
+          }, this);
         }
         // This almost gets the menu toggles working
         // initialize: function() {
