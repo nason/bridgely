@@ -16,14 +16,14 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         "company":  null
       },
       url: function() {
-        return 'http://localhost:3000' + '/v1/auth';
+        return bridgelyApp.apiUrl + '/auth';
       },
       initialize: function( ) {
         this.storage = localStorage;
         this.load();
       },
       authenticated: function() {
-        console.log('Authenticated:', !!this.get('auth_token') )
+        // console.log('Authenticated:', !!this.get('auth_token') )
         return !!this.get('auth_token');
       },
       login: function(email, password) {

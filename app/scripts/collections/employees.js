@@ -8,7 +8,9 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
     bridgelyApp.Collections.EmployeesCollection = Backbone.PageableCollection.extend({
 
         model: bridgelyApp.Models.EmployeeModel,
-        url: "http://localhost:3000/v1/employees",
+        url: function() {
+          return bridgelyApp.apiUrl + "/employees"
+        },
         state: {
           pageSize: 10
         },

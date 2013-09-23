@@ -6,6 +6,13 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
     'use strict';
 
     bridgelyApp.Routers.QuestionRouter = Backbone.Router.extend({
+      requireLogin : function(ifYes) {
+        if (bridgelyApp.session.authenticated()) {
+          if (_.isFunction(ifYes)) ifYes.call(this);
+        } else {
+          bridgelyApp.LoginRouter.navigate('login', {trigger: true})
+        }
+      },
       routes: {
         'question' : 'newQuestion',
         'question/:id' : 'viewQuestion',
@@ -13,6 +20,9 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       },
       newQuestion: function() {
         console.log('new question route');
+        this.requireLogin(function() {
+          new bridgelyApp.Views.newQuestionView().render();
+        })
       },
       viewQuestion: function(id) {
         if( id === undefined || !Number(id) ) {

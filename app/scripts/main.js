@@ -9,6 +9,9 @@ window.bridgelyApp = {
     init: function () {
         'use strict';
 
+        bridgelyApp.apiUrl = "http://localhost:3000/v1";
+        //bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
+
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
         bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
