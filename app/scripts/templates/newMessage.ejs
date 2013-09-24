@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <p class="form-control-static">
 
-        <%  if( bridgelyApp.session.get('company').settings.account_phone_number ) { %>
+        <%  if( bridgelyApp.session.get('company') && bridgelyApp.session.get('company').settings.account_phone_number ) { %>
             <%= bridgelyApp.session.get('company').settings.account_phone_number %>
         <% } else { %>
             <strong>Not yet assigned</strong>

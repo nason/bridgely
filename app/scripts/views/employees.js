@@ -1,5 +1,7 @@
 /*global bridgelyApp, Backbone, JST*/
 
+// TODO: Escape text from incoming twilio texts
+
 bridgelyApp.Views = bridgelyApp.Views || {};
 
 (function () {
@@ -14,6 +16,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.listenTo(this.collection, "change add", this.render);
 
           this.collection.fetch();
+
         },
         columns: [{
             name: 'selected',
@@ -24,7 +27,19 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           }, {
             name: "name",
             label: "Name",
-            cell: "string",
+            cell: Backgrid.StringCell.extend({
+              render: function() {
+                this.$el.empty();
+                this.$el.html( this.formatter.fromRaw( this.model.attributes ) )
+                this.delegateEvents();
+                return this;
+              }
+            }),
+            formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
+              fromRaw: function (data) {
+                return $('<a />').attr('href', '#employee/' + data.id).text( data.name );
+              }
+            }),
             editable: false
           }, {
             name: "phone",
@@ -33,8 +48,28 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             editable: false
           }, {
             name: "data",
-            label: "Tags",
-            cell: "string",
+            label: "Labels",
+            cell: Backgrid.StringCell.extend({
+              render: function () {
+                  this.$el.empty();
+                  var data = this.model.get('data');
+                  var labels = data.labels;
+
+                  labels && this.$el.html( this.formatter.fromRaw( labels ) );
+
+                  this.delegateEvents();
+                  return this;
+              }
+            }),
+            formatter:  _.extend({}, Backgrid.CellFormatter.prototype, {
+              fromRaw: function (data) {
+                var output = [], data = data || [];
+                _(data).each(function( label ) {
+                  output.push( '<span class="label label-default">' + escape(label) + '</span>' );
+                })
+                return output.join(' ');
+              }
+            }),
             editable: false,
             sortable: false
         }],
@@ -45,6 +80,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           })
         },
+        template: JST['app/scripts/templates/employees.ejs'],
         render: function() {
 
           // Initialize the paginator
@@ -52,15 +88,25 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
-          var $sendButton = $('<a href="#message" />').text(' Send SMS Message').prepend($('<span class="glyphicon glyphicon-send" />')).addClass('btn btn-lg btn-primary');
+          // var $sendButton = $('<a href="#message" />').text(' Send SMS Message').prepend($('<span class="glyphicon glyphicon-send" />')).addClass('btn btn-lg btn-primary');
 
-          var $layout = $('<div class=backgrid-container />').append(
+          // var $layout = $('<div class=backgrid-container />').append(
+          //   this.employeesGrid().render().$el
+          //   .add( paginator.render().$el )
+          //   .add( $sendButton )
+          // )
+          // this.$el.html( $layout );
+          // $('#content').html( this.el );
+          // return this.el;
+
+          $('#content').html( this.template );
+
+          $('.backgrid-container').prepend(
             this.employeesGrid().render().$el
-            .add( paginator.render().$el )
-            .add( $sendButton )
-          )
-          this.$el.html( $layout );
-          $('#content').html( this.el );
+          ).append(
+            paginator.render().$el
+          );
+
           return this.el;
 
         }

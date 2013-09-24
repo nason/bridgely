@@ -1,2 +1,22 @@
-<!-- Nnot being used -->
-<p>Your content here.</p>
+<div>
+
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-send"></span> Send to All
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a id="sms-all" href="#message">Send a Message</a></li>
+      <li><a id="question-all" href="#question">Ask a Question</a></li>
+    </ul>
+  </div>
+
+  <h2>Employee Directory<% bridgelyApp.session.get('company') && ' For' + bridgelyApp.session.get('company').name %></h2>
+
+</div>
+
+<div class=backgrid-container>
+
+  <div class="backgrid-footer">
+  </div>
+</div>

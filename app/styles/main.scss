@@ -24,6 +24,10 @@ html, body {
   margin: 0 auto;
 }
 
+#history-pills {
+  margin-bottom: 10px !important;
+}
+
 footer {
   color: #eee;
   background:  rgb(65, 165, 255);
@@ -34,6 +38,10 @@ footer {
   box-shadow: rgba(0, 0, 0, 0.65098) 0px 17px 16px -15px inset;
   text-align: center;
   width: 100%;
+}
+
+.backgrid-paginator ul {
+  padding: 0px;
 }
 
 .form-login {

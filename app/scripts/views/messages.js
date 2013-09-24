@@ -49,6 +49,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           })
         },
+        template: JST['app/scripts/templates/messages.ejs'],
         render: function() {
 
           // Initialize the paginator
@@ -56,16 +57,14 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
-          var $sendButton = $('<a href="#message" />').text(' Send SMS Message').prepend($('<span class="glyphicon glyphicon-send" />')).addClass('btn btn-lg btn-primary');
+          $('#content').html( this.template );
 
-          var $layout = $('<div class=backgrid-container />').append(
+          $('.backgrid-container').prepend(
             this.messagesGrid().render().$el
-            .add( paginator.render().$el )
-            .add( $sendButton )
-          )
+          ).append(
+            paginator.render().$el
+          );
 
-          this.$el.html( $layout );
-          $('#content').html( this.el );
           return this.el;
 
         }

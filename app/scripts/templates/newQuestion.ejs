@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <p class="form-control-static">
 
-      <%  if( bridgelyApp.session.get('company').settings.account_phone_number ) { %>
+      <%  if( bridgelyApp.session.get('company') && bridgelyApp.session.get('company').settings.account_phone_number ) { %>
             <%= bridgelyApp.session.get('company').settings.account_phone_number %>
        <% } else { %>
             <strong>Not yet assigned</strong>
@@ -35,16 +35,16 @@
       <div class="radio">
         <label>
           <input type="radio" name="optionsRadios" id="sendAsLabel" value="label" checked>
-          Save responses to this question as labels
+          Save responses as labels
         </label>
       </div>
       <div class="radio">
         <label>
           <input type="radio" name="optionsRadios" id="sendAsTag" value="tag">
-          Save responses as a tag&mdash;with the label:
+          Save responses as tags&mdash;in the column:
         </label>
         <label class="sr-only" for="question-tag">Label</label>
-        <input type="text" class="form-control" id="question-tag" placeholder="Quesiton Label">
+        <input type="text" class="form-control" id="question-tag" placeholder="Tag Name">
       </div>
       <textarea class="form-control" rows="3"></textarea>
       <span class="help-block">160 / 160 characters remaining</span>

@@ -1,2 +1,14 @@
-<p>Your content here.</p>
+<div>
+  <h2>Message History <% bridgelyApp.session.get('company') && ' For' + bridgelyApp.session.get('company').name %></h2>
+  <ul id="history-pills" class="nav nav-pills">
+    <li class="active"><a href="#">All</a></li>
+    <li><a href="#">Outbound</a></li>
+    <li><a href="#">Inbound</a></li>
+  </ul>
+</div>
 
+<div class=backgrid-container>
+
+  <div class="backgrid-footer"></div>
+
+</div>
