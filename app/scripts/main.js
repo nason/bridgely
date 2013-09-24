@@ -9,11 +9,10 @@ window.bridgelyApp = {
     init: function () {
         'use strict';
 
-        bridgelyApp.apiUrl = "http://localhost:3000/v1";
-        // bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
+        // bridgelyApp.apiUrl = "http://localhost:3000/v1";
+        bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
 
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
-        bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
         // If authenticated, send authorization header with every ajax request
         if( bridgelyApp.session.authenticated() ) {
@@ -23,6 +22,8 @@ window.bridgelyApp = {
             }
           });
         }
+
+        bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
         // Override Backbone Sync, send authorization headers with every sync request
         var sync = Backbone.sync;

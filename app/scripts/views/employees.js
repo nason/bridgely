@@ -103,10 +103,14 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           'click #question-all' : 'questionAll'
         },
         check: function(event) {
+          this.$('.send-selected').prop('disabled', false);
           if( $( event.target ).is(':checked') ) {
             bridgelyApp.session.addNewMessageEmployeeId( parseInt(event.target.id) );
           } else {
             bridgelyApp.session.removeNewMessageEmployeeId( parseInt(event.target.id) );
+            if ( bridgelyApp.session.get('new_message_employee_ids') === 'all' ) {
+              this.$('.send-selected').prop('disabled', true);
+            }
           }
         },
         smsSelected: function(event) {
