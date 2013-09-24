@@ -11,7 +11,12 @@
     </ul>
   </div>
 
-  <h2>Employee Directory<% bridgelyApp.session.get('company') && ' For' + bridgelyApp.session.get('company').name %></h2>
+  <h2>
+    <% if(bridgelyApp.session.get('company')) { %>
+    <%= bridgelyApp.session.get('company').name + '' %>
+    <% } %>
+    Mobile Directory
+  </h2>
 
 </div>
 
