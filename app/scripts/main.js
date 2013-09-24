@@ -71,6 +71,7 @@ $(document).ready(function () {
     // On 403 forbidden go to denied page
     if (jqxhr.status === 401) {
       window.location = '#login';
+      bridgelyApp.session.destroy();
     } else if (jqxhr.status === 403) {
       window.location = '#denied'
     }

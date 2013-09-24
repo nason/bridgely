@@ -90,6 +90,26 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           "new_message_employee_ids": 'all'
         });
       },
+      addNewMessageEmployeeId: function(id) {
+        var ids = this.get('new_message_employee_ids');
+        if( ids === 'all') {
+          ids = [];
+        }
+        ids.push(id)
+        this.set('new_message_employee_ids', ids)
+      },
+      removeNewMessageEmployeeId: function(id) {
+        var ids = this.get('new_message_employee_ids');
+        if(ids === 'all' || ids === [] || ids.indexOf(id) === -1 ) {
+          throw new Error('Cannot remove employee id');
+        } else {
+          var new_ids = _(ids).without(id);
+          if( new_ids.length === 0 ) {
+            new_ids = 'all';
+          }
+          this.set('new_message_employee_ids', new_ids );
+        }
+      },
       resetNewMessageEmployeeIds: function() {
         this.set('new_message_employee_ids', 'all');
       }

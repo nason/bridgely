@@ -29,7 +29,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             }),
             formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
               fromRaw: function(data) {
-                return $('<input type=checkbox />').attr('id', data.id)
+                var selected = false
+                if( bridgelyApp.session.get('new_message_employee_ids') !== 'all' ) {
+                  selected = bridgelyApp.session.get('new_message_employee_ids').indexOf(data.id) > -1
+                }
+                return $('<input type=checkbox />').attr('id', data.id).prop('checked', selected);
               }
             }),
             sortable: false,
@@ -92,40 +96,35 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         template: JST['app/scripts/templates/employees.ejs'],
         events: {
+          'click .boolean-cell input:checkbox' : 'check',
           'click #sms-selected' : 'smsSelected',
           'click #question-selected' : 'questionSelected',
           'click #sms-all' : 'smsAll',
           'click #question-all' : 'questionAll'
         },
+        check: function(event) {
+          if( $( event.target ).is(':checked') ) {
+            bridgelyApp.session.addNewMessageEmployeeId( parseInt(event.target.id) );
+          } else {
+            bridgelyApp.session.removeNewMessageEmployeeId( parseInt(event.target.id) );
+          }
+        },
         smsSelected: function(event) {
           event.preventDefault();
-
-          var ids = _(this.$('.boolean-cell input:checked')).map( function(box){
-            return parseInt(box.id);
-          });
-          if(ids.length) {
-            bridgelyApp.session.set('new_message_employee_ids', ids);
-          }
           bridgelyApp.MessageRouter.navigate('message', {trigger:true});
         },
         questionSelected: function(event) {
           event.preventDefault();
-
-          var ids = _(this.$('.boolean-cell input:checked')).map( function(box){
-            return parseInt(box.id);
-          });
-          if(ids.length) {
-            bridgelyApp.session.set('new_message_employee_ids', ids);
-          }
-          bridgelyApp.session.set('new_message_employee_ids', ids);
           bridgelyApp.QuestionRouter.navigate('question', {trigger:true});
         },
         smsAll: function(event) {
           event.preventDefault();
+          bridgelyApp.session.set('new_message_employee_ids', 'all');
           bridgelyApp.MessageRouter.navigate('message', {trigger:true});
         },
         questionAll: function(event) {
           event.preventDefault();
+          bridgelyApp.session.set('new_message_employee_ids', 'all');
           bridgelyApp.QuestionRouter.navigate('question', {trigger:true});
         },
         render: function() {
