@@ -9,6 +9,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
         template: JST['app/scripts/templates/newQuestion.ejs'],
         el: $('<form />'),
+
         render: function() {
           this.delegateEvents();
           this.$el.html( this.template );
@@ -32,13 +33,14 @@ bridgelyApp.Views = bridgelyApp.Views || {};
                 response_tag: this.$('#question-tag').val(),
                 message: {
                   body: this.$('textarea').val(),
-                  employee_ids: 'all', // TODO: get a list of ids or 'all'
+                  employee_ids: employee_ids: bridgelyApp.session.get('new_message_employee_ids').join(),
                   company_id: bridgelyApp.session.get('company').id
                 }
               }
             },
             success: function() {
               console.log('question sent successfully')
+              bridgelyApp.session.resetNewMessageEmployeeIds();
               $('#successModal').modal({
                 backdrop: 'static',
                 keyboard: false
@@ -47,6 +49,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             error: function() {
               //TODO: Error screen
               console.log('question send failed!!')
+              bridgelyApp.session.resetNewMessageEmployeeIds();
             }
           })
         },

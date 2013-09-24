@@ -12,7 +12,8 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         "name": null,
         "email": null,
         "company": null,
-        "auth_token":  null
+        "auth_token":  null,
+        "new_message_employee_ids": 'all'
       },
       url: function() {
         return bridgelyApp.apiUrl + '/auth';
@@ -22,7 +23,6 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         this.load();
       },
       authenticated: function() {
-        // console.log('Authenticated:', !!this.get('auth_token') )
         return !!this.get('auth_token');
       },
       login: function(email, password) {
@@ -50,6 +50,10 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           var session = this;
           $.ajax({
             type: 'DELETE',
+            headers: {
+              // left this in bc ajaxSetup headers didn't apply here?
+              'Authorization': "Token token="+this.get('auth_token')
+            },
             url: this.url()+'/logout',
             complete: function() {
               session.destroy();
@@ -82,8 +86,12 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           "name": null,
           "email": null,
           "company": null,
-          "auth_token":  null
+          "auth_token":  null,
+          "new_message_employee_ids": 'all'
         });
+      },
+      resetNewMessageEmployeeIds: function() {
+        this.set('new_message_employee_ids', 'all');
       }
     });
 

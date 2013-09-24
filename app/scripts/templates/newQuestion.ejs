@@ -23,7 +23,13 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">To</label>
     <div class="col-md-8">
-      <p class="form-control-static">Whole Mobile Directory / Selected Employees</p>
+      <p class="form-control-static">
+        <% if( bridgelyApp.session.get('new_message_employee_ids') !== 'all' ) { %>
+          <%= bridgelyApp.session.get('new_message_employee_ids').length %> Selected Employees
+        <% } else { %>
+          Whole Mobile Directory
+        <% } %>
+      </p>
     </div>
     <div class="col-md-2"></div>
   </div>

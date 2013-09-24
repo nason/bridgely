@@ -10,18 +10,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         initialize: function() {
           // TODO: Filter this to one company_id => the user's company id or the company the admin is viewing
           this.collection = new bridgelyApp.Collections.MessagesCollection(),
-
           this.listenTo(this.collection, "change add", this.render);
-
           this.collection.fetch();
         },
         columns: [{
-            name: 'selected',
-            label: '',
-            cell: 'boolean',
-            sortable: false,
-            editable: false
-          }, {
             name: "employee_ids",
             label: "Employee IDs",
             cell: "string",
@@ -66,10 +58,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           );
 
           return this.el;
-
         }
-
-
     });
-
 })();
