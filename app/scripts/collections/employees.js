@@ -12,7 +12,7 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
           return bridgelyApp.apiUrl + "/employees"
         },
         state: {
-          pageSize: 2
+          pageSize: 4
         },
         mode: "client" // page entirely on the client side
 

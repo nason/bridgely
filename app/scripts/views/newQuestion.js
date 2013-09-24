@@ -27,6 +27,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $.ajax({
             type: 'POST',
             url: bridgelyApp.apiUrl + '/questions',
+            headers: {
+              // left this in bc ajaxSetup headers didn't apply here?
+              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
+            },
             data: {
               question: {
                 title: this.$('#question-title').val(),

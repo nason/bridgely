@@ -11,6 +11,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
       defaults: {
         "name": null,
         "email": null,
+        "admin": false,
         "company": null,
         "auth_token":  null,
         "new_message_employee_ids": 'all'
@@ -73,6 +74,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           this.set({
             "name": session.name,
             "email": session.email,
+            "admin": session.admin,
             "company": session.company,
             "auth_token":  session.authorization_token
           })
@@ -85,6 +87,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         this.set({
           "name": null,
           "email": null,
+          "admin": false,
           "company": null,
           "auth_token":  null,
           "new_message_employee_ids": 'all'

@@ -9,7 +9,6 @@
     <li class="active"><a href="#">Home</a></li>
 
 <% if (bridgelyApp.session.authenticated()) { %>
-    <li><a href="#companies">Companies*</a></li>
     <li><a href="#directory"><span class="glyphicon glyphicon-user"></span> Directory</a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-inbox"></span> Messages <b class="caret"></b></a>
@@ -25,7 +24,18 @@
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome back, <%= bridgelyApp.session.get('name').split(' ')[0] %> <b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#"><span class="label label-default"><%= bridgelyApp.session.get('company') && bridgelyApp.session.get('company').name %></span></a></li>
+        <% if( bridgelyApp.session.get('admin') === true ) { %>
+        <li class="dropdown-header">ADMIN PAGES</li>
+        <li><a href="#companies">Companies</a></li>
+        <li><a href="#companies">Users
+        </a></li>
+        <li class="divider"></li>
+        <% } %>
+        <li class="dropdown-header">
+          <h5><span class="label label-default">
+            <%= bridgelyApp.session.get('company') && bridgelyApp.session.get('company').name %>
+          </span></h5>
+        </li>
         <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Company</a></li>
         <li class="divider"></li>
