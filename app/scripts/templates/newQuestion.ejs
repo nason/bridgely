@@ -1,7 +1,7 @@
 <div class='col-md-2'></div>
 
 <div class='well col-md-8'>
-  <legend>Send a SMS Message</legend>
+  <legend>Send a SMS Question</legend>
 
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">From</label>
@@ -31,6 +31,7 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">Question</label>
     <div class="col-md-8">
+      <input type="text" class="form-control" id="question-title" placeholder="Quesiton Title">
       <div class="radio">
         <label>
           <input type="radio" name="optionsRadios" id="sendAsLabel" value="label" checked>
@@ -41,9 +42,9 @@
         <label>
           <input type="radio" name="optionsRadios" id="sendAsTag" value="tag">
           Save responses as a tag&mdash;with the label:
-            <label class="sr-only" for="questionLabel">Label</label>
-            <input type="text" class="form-control" id="questionLabel" placeholder="Quesiton Label">
         </label>
+        <label class="sr-only" for="question-tag">Label</label>
+        <input type="text" class="form-control" id="question-tag" placeholder="Quesiton Label">
       </div>
       <textarea class="form-control" rows="3"></textarea>
       <span class="help-block">160 / 160 characters remaining</span>
@@ -54,7 +55,7 @@
   <div class="form-group clearfix">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <button type="button" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-send"></span> Send SMS Question</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-send"></span> Send SMS Question</button>
     </div>
     <div class="col-md-2"><span class="help-block"><br />or, <a href="#">cancel</a></span></div>
   </div>
@@ -62,4 +63,24 @@
 </div>
 
 <div class='col-md-2'></div>
+
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="success">Success!</h2>
+      </div>
+      <div class="modal-body">
+        <h3>Your question has been queued and will begin sending momentarily</h3>
+        <br />
+        <p>Please wait before sending more messages or questions so incoming responses to this question can be processed.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-primary" id="success-button">Continue</button>
+        <p class="pull-left"><small><em>Allow up to 4 hours for all messages to be delivered.</em></small></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
