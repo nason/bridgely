@@ -13,6 +13,12 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.$el.html( this.template );
           $('#content').html( this.el );
           return this.el;
+        },
+        events: {
+          'submit' : 'sendQuestion'
+        },
+        sendQuestion: function() {
+          // $.ajax()
         }
 
     });

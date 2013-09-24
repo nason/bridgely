@@ -9,7 +9,9 @@ bridgelyApp.Models = bridgelyApp.Models || {};
 
     bridgelyApp.Models.SessionModel = Backbone.Model.extend({
       defaults: {
-        "account": null,
+        "name": null,
+        "email": null,
+        "company": null,
         "auth_token":  null
       },
       url: function() {
@@ -30,7 +32,11 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           url: this.url()+'/login',
           data: {session: {email: email, password: password}},
           success: function(data) {
-            session.save( data.account, data.auth_token );
+            if(data.admin === true) {
+              this.admin = true;
+              // TODO trigger an admin authentication event?
+            }
+            session.save(data);
             session.load();
             bridgelyApp.appView.trigger('authenticated');
           },
@@ -45,9 +51,6 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           $.ajax({
             type: 'DELETE',
             url: this.url()+'/logout',
-            headers: {
-              'Authorization' : 'Token token=' + session.get('auth_token')
-            },
             complete: function() {
               session.destroy();
               bridgelyApp.LoginRouter.navigate('', {trigger: true})
@@ -55,18 +58,20 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           });
         }
       },
-      save: function(account, auth_token) {
+      save: function(data) {
         // Save the auth_token into browser localstorge / cookie
-        this.storage.setItem('t', auth_token );
-        this.storage.setItem('a', JSON.stringify(account) );
+        this.storage.setItem('session', JSON.stringify(data) );
       },
       load : function() {
         // Load from browser localstorge / cookie into model
-        if (this.storage.length > 0) {
+        if ( this.storage.length > 0 && this.storage.getItem('session') ) {
+          var session = JSON.parse( this.storage.getItem('session') );
           this.set({
-            auth_token: this.storage.getItem('t'),
-            account: JSON.parse( this.storage.getItem('a') )
-          });
+            "name": session.name,
+            "email": session.email,
+            "company": session.company,
+            "auth_token":  session.authorization_token
+          })
         } else {
           return;
         }
@@ -74,8 +79,10 @@ bridgelyApp.Models = bridgelyApp.Models || {};
       destroy: function() {
         this.storage.clear();
         this.set({
-          auth_token: null,
-          account: null
+          "name": null,
+          "email": null,
+          "company": null,
+          "auth_token":  null
         });
       }
     });

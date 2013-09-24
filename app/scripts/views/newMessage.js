@@ -13,6 +13,31 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.$el.html( this.template );
           $('#content').html( this.el );
           return this.el;
+        },
+        events: {
+          'submit' : 'sendMessage'
+        },
+        sendMessage: function(event) {
+          event.preventDefault();
+          $.ajax({
+            type: 'POST',
+            url: bridgelyApp.apiUrl + '/messages',
+            data: {
+              message: {
+                body: this.$('textarea').val(),
+                employee_ids: 'all', // TODO: get a list of ids or 'all'
+                company_id: bridgelyApp.session.get('account').company.id
+              }
+            },
+            success: function() {
+              //TODO: Success screen
+              console.log('message sent successfully')
+            },
+            error: function() {
+              //TODO: Error screen
+              console.log('mesaage send failed!!')
+            }
+          })
         }
 
     });

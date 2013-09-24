@@ -15,7 +15,16 @@ window.bridgelyApp = {
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
         bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
-        // Override Backbone Sync
+        // If authenticated, send authorization header with every ajax request
+        if( bridgelyApp.session.authenticated() ) {
+          $.ajaxSetup({
+            headers: {
+              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
+            }
+          });
+        }
+
+        // Override Backbone Sync, send authorization headers with every sync request
         var sync = Backbone.sync;
         Backbone.sync = function(method, model, options) {
           options.beforeSend = function (xhr) {

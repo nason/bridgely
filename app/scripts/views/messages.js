@@ -44,7 +44,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         }],
         messagesGrid: function() {
           return new Backgrid.Grid({
-            className: 'backgrid lead',
+            className: 'table table-hover table-condensed backgrid',
             columns: this.columns,
             collection: this.collection
           })
@@ -58,9 +58,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           var $sendButton = $('<a href="#message" />').text(' Send SMS Message').prepend($('<span class="glyphicon glyphicon-send" />')).addClass('btn btn-lg btn-primary');
 
-          var $layout = this.messagesGrid().render().$el
-          .add( paginator.render().$el )
-          .add( $sendButton )
+          var $layout = $('<div class=backgrid-container />').append(
+            this.messagesGrid().render().$el
+            .add( paginator.render().$el )
+            .add( $sendButton )
+          )
 
           this.$el.html( $layout );
           $('#content').html( this.el );

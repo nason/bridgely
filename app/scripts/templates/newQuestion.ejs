@@ -6,7 +6,15 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">From</label>
     <div class="col-md-8">
-      <p class="form-control-static">(415) 000-0000</p>
+      <p class="form-control-static">
+
+      <%  if( bridgelyApp.session.get('company').settings.account_phone_number ) { %>
+            <%= bridgelyApp.session.get('company').settings.account_phone_number %>
+       <% } else { %>
+            <strong>Not yet assigned</strong>
+       <% } %>
+
+      </p>
       <p><small><em>Your Twillio SMS Number</em></small></p>
     </div>
     <div class="col-md-2"></div>
@@ -32,7 +40,7 @@
       <div class="radio">
         <label>
           <input type="radio" name="optionsRadios" id="sendAsTag" value="tag">
-          Save responses as a tag&mdash; with the label:
+          Save responses as a tag&mdash;with the label:
             <label class="sr-only" for="questionLabel">Label</label>
             <input type="text" class="form-control" id="questionLabel" placeholder="Quesiton Label">
         </label>
@@ -46,7 +54,7 @@
   <div class="form-group clearfix">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <button type="button" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-send"></span> Send SMS</button>
+      <button type="button" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-send"></span> Send SMS Question</button>
     </div>
     <div class="col-md-2"><span class="help-block"><br />or, <a href="#">cancel</a></span></div>
   </div>
