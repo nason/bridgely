@@ -33,7 +33,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
                 response_tag: this.$('#question-tag').val(),
                 message: {
                   body: this.$('textarea').val(),
-                  employee_ids: employee_ids: bridgelyApp.session.get('new_message_employee_ids').join(),
+                  employee_ids: bridgelyApp.session.get('new_message_employee_ids').join(),
                   company_id: bridgelyApp.session.get('company').id
                 }
               }
