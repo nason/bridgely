@@ -9,11 +9,77 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/navbar.ejs'],
         el: $('<nav role="navigation" />'),
         events: {
-          'click #logout' : 'signOut'
+          'click .home': 'home',
+          'click .account' : 'account',
+          'click .company' : 'company',
+          'click .directory' : 'directory',
+          'click .login' : 'signIn',
+          'click .logout' : 'signOut',
+          'click .new-message' : 'newMessage',
+          'click .new-question' : 'newQuestion',
+          'click .message-history' : 'messageHistory',
+          'click .admin-users' : 'adminUsers',
+          'click .admin-companies' : 'adminCompanies'
+        },
+        home: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.IndexRouter.navigate('', {trigger: true});
+        },
+        account: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.IndexRouter.navigate('settings', {trigger: true});
+        },
+        company: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.IndexRouter.navigate('company', {trigger: true});
+        },
+        directory: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+        },
+        newMessage: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.MessageRouter.navigate('message', {trigger: true})
+        },
+        newQuestion: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.QuestionRouter.navigate('question', {trigger: true})
+        },
+        messageHistory: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.MessageRouter.navigate('message-history', {trigger: true})
+        },
+        adminUsers: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.AdminRouter.navigate('admin/users', {trigger:true});
+        },
+        adminCompanies: function() {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.AdminRouter.navigate('admin/companies', {trigger:true});
+        },
+        signIn: function(event) {
+          event.preventDefault();
+          this.toggleSelected();
+          bridgelyApp.LoginRouter.navigate('login', {trigger: true});
         },
         signOut: function(event) {
           event.preventDefault();
+          this.toggleSelected();
           bridgelyApp.session.logout();
+        },
+        toggleSelected: function() {
+          // TODO: Call this on route event?
+          this.$('.active').removeClass('active');
+          $(event.target.parentElement).addClass('active');
         },
         render: function() {
           this.$el.addClass("navbar navbar-default container");
@@ -28,18 +94,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             this.render();
           }, this);
         }
-        // This almost gets the menu toggles working
-        // initialize: function() {
-        //   var that = this;
-        //   this.$el.on('click', function(e) {
-        //     that.toggleSelected($(e.target).closest('li'));
-        //   });
-        // },
-        // toggleSelected: function(el) {
-        //   console.log(el)
-        //   $(el).addClass('active');
-        //   $(el).siblings().removeClass('active');
-        // }
 
     });
 

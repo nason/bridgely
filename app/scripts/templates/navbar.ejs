@@ -6,17 +6,17 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div>
   <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#" class="home">Home</a></li>
 
 <% if (bridgelyApp.session.authenticated()) { %>
-    <li><a href="#directory"><span class="glyphicon glyphicon-user"></span> Directory</a></li>
+    <li><a href="#" class="directory"><span class="glyphicon glyphicon-user"></span> Directory</a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-inbox"></span> Messages <b class="caret"></b></a>
       <ul class="dropdown-menu">
-        <li><a href="#message"><span class="glyphicon glyphicon-send"></span> Send a Message</a></li>
-        <li><a href="#question"><span class="glyphicon glyphicon-question-sign"></span> Ask a Question</a></li>
+        <li><a href="#" class="new-message"><span class="glyphicon glyphicon-send"></span> Send a Message</a></li>
+        <li><a href="#" class="new-question"><span class="glyphicon glyphicon-question-sign"></span> Ask a Question</a></li>
         <li class="divider"></li>
-        <li><a href="#message-history"><span class="glyphicon glyphicon-transfer"></span> Message History</a></li>
+        <li><a href="#" class="message-history"><span class="glyphicon glyphicon-transfer"></span> Message History</a></li>
       </ul>
     </li>
   </ul>
@@ -26,8 +26,8 @@
       <ul class="dropdown-menu">
         <% if( bridgelyApp.session.get('admin') === true ) { %>
         <li class="dropdown-header">ADMIN PAGES</li>
-        <li><a href="#companies">Companies</a></li>
-        <li><a href="#companies">Users
+        <li><a class="admin-companies" href="#">Companies</a></li>
+        <li><a class="admin-users" href="#">Users
         </a></li>
         <li class="divider"></li>
         <% } %>
@@ -36,17 +36,17 @@
             <%= bridgelyApp.session.get('company') && bridgelyApp.session.get('company').name %>
           </span></h5>
         </li>
-        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-phone-alt"></span> Company</a></li>
+        <li><a href="#" class="account"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
+        <li><a href="#" class="company"><span class="glyphicon glyphicon-phone-alt"></span> Company</a></li>
         <li class="divider"></li>
-        <li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li><a href="#" class="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </li>
   </ul>
 <% } else { %>
   </ul>
   <ul class="nav navbar-nav navbar-right">
-        <li><a href="#login" id="signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="#" class="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
   </ul>
 
 <% } %>
