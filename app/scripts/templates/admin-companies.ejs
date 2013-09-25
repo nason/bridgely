@@ -5,7 +5,7 @@
   <div><p></p></div>
   <div class="well companies list-group">
     <% _(this.collection.models).each(function(model) { %>
-      <a class="list-group-item" id="company-<%= model.get('id') %>" href="#">
+      <a class="company list-group-item" id="company-<%= model.get('id') %>" href="#">
         <p class="list-group-item-text pull-right"><%= model.get('settings').account_phone_number %></p>
         <h4 class="list-group-item-heading"><%= model.get('name') %></h4>
       </a>
