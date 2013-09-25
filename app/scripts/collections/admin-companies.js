@@ -7,7 +7,10 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
 
     bridgelyApp.Collections.AdminCompaniesCollection = Backbone.Collection.extend({
 
-        model: bridgelyApp.Models.AdminCompaniesModel
+        model: bridgelyApp.Models.AdminCompaniesModel,
+        url: function() {
+          return bridgelyApp.apiUrl + "/admin/companies"
+        }
 
     });
 
