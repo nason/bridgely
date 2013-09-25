@@ -27,18 +27,21 @@
         <% if( bridgelyApp.session.get('admin') === true ) { %>
         <li class="dropdown-header">ADMIN PAGES</li>
         <li><a class="admin-companies" href="#">Companies</a></li>
-        <li><a class="admin-users" href="#">Users
-        </a></li>
+        <li><a class="admin-users" href="#">Users</a></li>
         <li class="divider"></li>
         <% } %>
+
+        <% if( bridgelyApp.session.get('company') ) { %>
         <li class="dropdown-header">
           <h5><span class="label label-default">
-            <%= bridgelyApp.session.get('company') && bridgelyApp.session.get('company').name %>
+            <%= bridgelyApp.session.get('company').name %>
           </span></h5>
         </li>
         <li><a href="#" class="account"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
         <li><a href="#" class="company"><span class="glyphicon glyphicon-phone-alt"></span> Company</a></li>
         <li class="divider"></li>
+        <% } %>
+
         <li><a href="#" class="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </li>

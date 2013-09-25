@@ -15,6 +15,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.collection.fetch();
         },
         events: {
+          'click .company' : 'loadCompany',
           'click .btn-company' : 'newCompany'
         },
         render: function() {
@@ -22,6 +23,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $('#content').html( this.el );
           this.delegateEvents();
           return this.el;
+        },
+        loadCompany: function(event) {
+          event.preventDefault();
+          console.log($(event.target));
+          console.log(this, event.target.id)
         },
         newCompany: function(event) {
           event.preventDefault();
