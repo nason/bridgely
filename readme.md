@@ -9,7 +9,7 @@ Features include:
 - Send messages
 - Send questions and tag incoming responses
 
-Bridgely consumes the Twilio API to send and receive text messages.
+Bridgely consumes the Twilio API to send and receive text messages. The Bridgely API must be configured with valid Twilio crendtials to send or receive text messages.
 
 ### Dependencies
 - Bridgely API
@@ -22,11 +22,13 @@ Bridgely consumes the Twilio API to send and receive text messages.
 - Sass-Bootstrap
 - Modernizr
 - Grunt
+- Bower
 
 ### Configuration
-1. Point the bridgelyApp.ApiUrl to your API
-2. <tt>bower install</tt>
-3. <tt>grunt build</tt>
+1. Point the bridgelyApp.apiUrl variable in <tt>app/scripts/main.js</tt> to your API
+2. <tt>npm install</tt>
+3. <tt>bower install</tt>
+4. <tt>grunt build</tt>
 
 ### Deployment instructions
 - <tt>grunt server</tt> to run locally.
