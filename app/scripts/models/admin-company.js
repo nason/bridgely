@@ -6,6 +6,10 @@ bridgelyApp.Models = bridgelyApp.Models || {};
     'use strict';
 
     bridgelyApp.Models.AdminCompanyModel = Backbone.Model.extend({
+      defaults: {
+        "name": null,
+        "settings": null
+      }
 
     });
 
