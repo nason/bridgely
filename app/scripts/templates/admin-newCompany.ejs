@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <input class="form-control" type="text" name="company[name]"></input>
       <p><em>Enter the company's name</em>.
-      <br />Twilio SMS Number will be generated on submission</p>
+      <br />Twilio SMS Number will be provisioned on submission</p>
     </div>
     <div class="col-md-2"></div>
   </div>
@@ -19,10 +19,13 @@
     <label class="col-md-2 control-label">Autoresponder</label>
     <div class="col-md-8">
       <textarea class="form-control" rows="3" name="company[settings][autoresponder]"></textarea>
-      <p><small><em>160 / 160 Characters Left</em></small></p>
-      <p><small><em>Insert a Bridgely link with {{@link}}</em></small></p>
-      <p><small><em>Insert company name with {{@company}}</em></small></p>
-      <p><small><em>Insert employee's first name with {{@employee}}</em></small></p>
+      <small><em>160 / 160 Characters Left</em></small>
+      <code>
+        <p>Insert a Bridgely link with {{@link}}</p>
+        <p>Insert company name with {{@company}}</p>
+        <p>Insert employee's first name with {{@employee}}</p>
+      </code>
+
     </div>
     <div class="col-md-2"></div>
   </div>
@@ -32,7 +35,7 @@
   <div class="form-group">
     <label class="col-md-2 control-label">User Email</label>
     <div class="col-md-8">
-      <input class="form-control" type="text" name="company[user][email]"></input>
+      <input class="form-control" type="email" name="company[user][email]"></input>
     </div>
     <div class="col-md-2"></div>
   </div>
