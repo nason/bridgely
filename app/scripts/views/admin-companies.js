@@ -14,11 +14,17 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           }, this);
           this.collection.fetch();
         },
-
+        events: {
+          'click .btn-company' : 'newCompany'
+        },
         render: function() {
           this.$el.html( this.template(this.collection.models) );
           this.delegateEvents();
           return this.el;
+        },
+        newCompany: function(event) {
+          event.preventDefault();
+          bridgelyApp.AdminRouter.navigate('admin/companies/new', {trigger: true});
         }
     });
 

@@ -8,7 +8,8 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
     bridgelyApp.Routers.AdminRouter = Backbone.Router.extend({
       routes: {
         'admin/users' : 'users',
-        'admin/companies' : 'companies'
+        'admin/companies' : 'companies',
+        'admin/companies/new' : 'newCompany'
       },
       // TODO: Require Admin!!!!!!!
       requireLogin: function(ifYes) {
@@ -25,6 +26,12 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         console.log('admin companies route!!')
         this.requireLogin(function() {
           $('#content').html( new bridgelyApp.Views.AdminCompaniesView().render() );
+        })
+      },
+      newCompany: function() {
+        console.log('admin new company route!!')
+        this.requireLogin(function() {
+          $('#content').html( new bridgelyApp.Views.AdminNewCompanyView().render() );
         })
       }
     });
