@@ -14,7 +14,13 @@ Bridgely consumes the Twilio API to send and receive text messages.
 ### Dependencies
 - Bridgely API
 - Backbone
-- Bootstrap
+- Backgrid
+- Backgrid-paginator
+- Backgrid-pageable
+- jQuery
+- Underscore
+- Sass-Bootstrap
+- Modernizr
 - Grunt
 
 ### Configuration
