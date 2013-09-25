@@ -8,20 +8,20 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.AdminNewCompanyView = Backbone.View.extend({
 
         template: JST['app/scripts/templates/admin-newCompany.ejs'],
-        el: $('<form role="form" />'),
+        el: $('<form />'),
         events: {
           'submit' : 'createCompany'
         },
-        render: function() {
-          this.delegateEvents();
-          this.$el.html( this.template ).addClass('form-horizontal');
-          $('#content').html( this.el );
-          return this.el;
+        createCompany: function(event) {
+          event.preventDefault();
+          console.log('yes!');
         },
-        createCompany: function() {
-
+        render: function() {
+          this.$el.html( this.template ).addClass('form-horizontal').attr('role', 'form');
+          $('#content').html( this.el );
+          this.delegateEvents();
+          return this.el;
         }
-
     });
 
 })();

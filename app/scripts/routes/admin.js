@@ -25,13 +25,13 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       companies: function() {
         console.log('admin companies route!!')
         this.requireLogin(function() {
-          $('#content').html( new bridgelyApp.Views.AdminCompaniesView().render() );
+          new bridgelyApp.Views.AdminCompaniesView().render();
         })
       },
       newCompany: function() {
         console.log('admin new company route!!')
         this.requireLogin(function() {
-          $('#content').html( new bridgelyApp.Views.AdminNewCompanyView().render() );
+          new bridgelyApp.Views.AdminNewCompanyView().render();
         })
       }
     });

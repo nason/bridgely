@@ -19,6 +19,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         render: function() {
           this.$el.html( this.template(this.collection.models) );
+          $('#content').html( this.el );
           this.delegateEvents();
           return this.el;
         },
