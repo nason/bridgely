@@ -1,4 +1,14 @@
 <div class="admin-companies">
-  <button type="button" class="btn btn-primary">Add a New Company</button>
-  <div class="companies"></div>
+  <div>
+    <button type="button" class="btn btn-lg btn-block btn-primary">Add a New Company</button>
+  </div>
+  <div><p></p></div>
+  <div class="well companies list-group">
+    <% _(this.collection.models).each(function(model) { %>
+      <a class="list-group-item" id="company-<%= model.get('id') %>" href="#">
+        <p class="list-group-item-text pull-right"><%= model.get('settings').account_phone_number %></p>
+        <h4 class="list-group-item-heading"><%= model.get('name') %></h4>
+      </a>
+    <% }) %>
+  </div>
 </div>
