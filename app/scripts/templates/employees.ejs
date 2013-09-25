@@ -2,13 +2,43 @@
 
   <div class="btn-group pull-right">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      <span class="glyphicon glyphicon-send"></span> Send to All
+      <span class="glyphicon glyphicon-star"></span> Send to All
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-      <li><a id="sms-all" href="#">Send a Message</a></li>
-      <li><a id="question-all" href="#">Ask a Question</a></li>
+       <li><a id="sms-all" href="#"><span class="glyphicon glyphicon-send"></span> Send a Message</a></li>
+       <li><a id="question-all" href="#"><span class="glyphicon glyphicon-question-sign"></span> Ask a Question</a></li>
     </ul>
+  </div>
+
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-success dropdown-toggle btn-questions" data-toggle="dropdown">
+      <span class="glyphicon glyphicon-retweet"></span> Question Tags
+      <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu tag-list list-group">
+
+      <% if( this.tags().length ) { %>
+
+        <% _.each(this.tags(), function(tag) { %>
+          <div class="tag-list-item list-group-item">
+            <label>
+              <input type="checkbox" name=<%=tag%>> <%= tag.replace(/"/g, "") %></input>
+            </label>
+          </div>
+        <% }) %>
+
+      <% } else { %>
+
+        <div class="tag-list-item list-group-item">
+          <label>
+            <span class="glyphicon glyphicon-ban-circle"></span> No tags, yet
+          </label>
+        </div>
+
+      <% } %>
+
+    </div>
   </div>
 
   <h2>
@@ -27,8 +57,8 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-      <li><a id="sms-selected" href="#">Send a Message</a></li>
-      <li><a id="question-selected" href="#">Ask a Question</a></li>
+      <li><a id="sms-selected" href="#"><span class="glyphicon glyphicon-send"></span> Send a Message</a></li>
+      <li><a id="question-selected" href="#"><span class="glyphicon glyphicon-question-sign"></span> Ask a Question</a></li>
     </ul>
   </div>
   <div class="backgrid-footer">

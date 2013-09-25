@@ -2,6 +2,8 @@
 
 // TODO: Escape text from incoming twilio texts
 
+// TODO: Consider backbone-relational, see https://gist.github.com/jdkanani/5822296
+
 bridgelyApp.Views = bridgelyApp.Views || {};
 
 (function () {
@@ -11,10 +13,30 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
         initialize: function() {
           // TODO: Filter this to one company_id => the user's company id or the company the admin is viewing
-          this.collection = new bridgelyApp.Collections.EmployeesCollection(),
-          this.listenTo(this.collection, "change add", this.render);
+          this.collection = new bridgelyApp.Collections.EmployeesCollection();
+
+          this.grid = new Backgrid.Grid({
+            className: 'table table-hover table-condensed backgrid',
+            columns: this.columns,
+            collection: this.collection
+          });
+
+          this.listenTo(this.collection, "change add sync", this.render);
+          this.listenTo(this.grid, "change", this.render);
           this.collection.fetch();
           bridgelyApp.session.resetNewMessageEmployeeIds();
+        },
+        tags: function() {
+          var dataCol = this.collection.fullCollection.pluck('data'),
+              keys = [];
+
+          _.each(dataCol, function(data) {
+            data.tags && _.each(_.keys(data.tags), function(key) {
+              keys.push(key);
+            })
+          })
+
+          return _.uniq(keys);
         },
         columns: [{
             name: 'selected',
@@ -87,16 +109,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             editable: false,
             sortable: false
         }],
-        employeesGrid: function() {
-          return new Backgrid.Grid({
-            className: 'table table-hover table-condensed backgrid',
-            columns: this.columns,
-            collection: this.collection
-          })
-        },
         template: JST['app/scripts/templates/employees.ejs'],
         events: {
           'click .boolean-cell input:checkbox' : 'check',
+          'click .tag-list-item input:checkbox' : 'toggleTag',
           'click #sms-selected' : 'smsSelected',
           'click #question-selected' : 'questionSelected',
           'click #sms-all' : 'smsAll',
@@ -104,7 +120,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         check: function(event) {
           this.$('.send-selected').prop('disabled', false);
-          if( $( event.target ).is(':checked') ) {
+          if( event.target.checked ) {
             bridgelyApp.session.addNewMessageEmployeeId( parseInt(event.target.id) );
           } else {
             bridgelyApp.session.removeNewMessageEmployeeId( parseInt(event.target.id) );
@@ -112,6 +128,29 @@ bridgelyApp.Views = bridgelyApp.Views || {};
               this.$('.send-selected').prop('disabled', true);
             }
           }
+        },
+        toggleTag: function(event) {
+          if( event.target.checked ) {
+            // add column
+            this.grid.insertColumn([{
+              name: 'data',
+              label: event.target.name,
+              cell: 'string',
+              formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
+                fromRaw: function (data) {
+                  data.tags = data.tags || {};
+                  return data.tags[event.target.name];
+                }
+              }),
+              sortable: false,
+              editable: false
+            }]);
+          } else {
+            // remove column
+            var tagCol = this.grid.columns.where({ label: event.target.name });
+            this.grid.removeColumn(tagCol);
+          }
+          console.log(this.columns)
         },
         smsSelected: function(event) {
           event.preventDefault();
@@ -138,14 +177,13 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
-          $('#content').html( this.$el.append(this.template) );
+          $('#content').html( this.$el.html(this.template(this.collection)) );
 
           $('.backgrid-container').prepend(
-            this.employeesGrid().render().$el
+            this.grid.render().$el
           ).append(
             paginator.render().$el
           );
-
           this.delegateEvents();
           return this;
         }
