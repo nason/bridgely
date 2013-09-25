@@ -9,7 +9,7 @@ Features include:
 - Send messages
 - Send questions and tag incoming responses
 
-Bridgely consumes the Twilio API to send and receive text messages. The Bridgely API must be configured with valid Twilio crendtials to send or receive text messages.
+Bridgely consumes the Twilio API to send and receive text messages. The [Bridgely API](https://github.com/nason/bridgely-api/) must be configured with valid Twilio crendtials to send or receive text messages.
 
 ### Dependencies
 - Bridgely API
