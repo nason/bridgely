@@ -18,20 +18,21 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           $.ajax({
             type: 'POST',
-            url: bridgelyApp.apiUrl + '/admin/company',
+            url: bridgelyApp.apiUrl + '/admin/companies',
             headers: {
               // left this in bc ajaxSetup headers didn't apply here?
               'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
             },
             data: {
               company: {
-                name: this.$('input[name=name]').val(),
+                name: this.$('input[name=company-name]').val(),
                 settings: {
                   autoresponder: this.$('textarea[name=autoresponder]').val()
                 },
-                user: {
+                users: {
                   email: this.$('input[name=email]').val(),
-                  password: his.$('input[name=password]').val()
+                  name: this.$('input[name=users-name]').val(),
+                  password: this.$('input[name=password]').val()
                 }
               }
             },
