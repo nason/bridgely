@@ -10,6 +10,9 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
         model: bridgelyApp.Models.AdminCompaniesModel,
         url: function() {
           return bridgelyApp.apiUrl + "/admin/companies"
+        },
+        initialize: function() {
+          this.fetch();
         }
 
     });
