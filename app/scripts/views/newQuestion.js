@@ -24,6 +24,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           event.preventDefault();
           this.$('button[type=submit]').prop('disabled', true);
 
+          var recipients = bridgelyApp.session.get('new_message_employee_ids');
+          if( recipients !== 'all' ) {
+            recipients = recipients.join();
+          }
+
           $.ajax({
             type: 'POST',
             url: bridgelyApp.apiUrl + '/questions',
@@ -37,7 +42,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
                 response_tag: this.$('#question-tag').val(),
                 message: {
                   body: this.$('textarea').val(),
-                  employee_ids: bridgelyApp.session.get('new_message_employee_ids').join(),
+                  employee_ids: recipients,
                   company_id: bridgelyApp.session.get('company').id
                 }
               }
