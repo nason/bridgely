@@ -1,7 +1,5 @@
 /*global bridgelyApp, Backbone, JST*/
 
-// TODO: Escape text from incoming twilio texts
-
 // TODO: Consider backbone-relational, see https://gist.github.com/jdkanani/5822296
 
 bridgelyApp.Views = bridgelyApp.Views || {};
