@@ -9,7 +9,11 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
 
         model: bridgelyApp.Models.MessageModel,
         url: function() {
-          return bridgelyApp.apiUrl + "/messages"
+          if( bridgelyApp.session.get('admin') && bridgelyApp.session.get('company') ) {
+            return bridgelyApp.apiUrl + "/messages/company/" + bridgelyApp.session.get('company').id
+          } else {
+            return bridgelyApp.apiUrl + "/messages"
+          }
         },
         state: {
           pageSize: 10
