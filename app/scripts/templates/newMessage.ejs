@@ -6,7 +6,7 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">From</label>
     <div class="col-md-8">
-      <p class="form-control-static">
+      <p class="form-control-static input-lg">
 
         <%  if( bridgelyApp.session.get('company') && bridgelyApp.session.get('company').settings.account_phone_number ) { %>
             <%= bridgelyApp.session.get('company').settings.account_phone_number %>
@@ -23,7 +23,7 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">To</label>
     <div class="col-md-8">
-      <p class="form-control-static">
+      <p class="form-control-static input-lg">
         <% if( bridgelyApp.session.get('new_message_employee_ids') !== 'all' ) { %>
           <%= bridgelyApp.session.get('new_message_employee_ids').length %> Selected Employees
         <% } else { %>
@@ -37,8 +37,8 @@
   <div class="form-group clearfix">
     <label class="col-md-2 control-label">Message</label>
     <div class="col-md-8">
-      <textarea class="form-control" rows="3"></textarea>
-      <span class="help-block">160 / 160 characters remaining</span>
+      <textarea class="form-control input-lg" maxlength="160" rows="4"></textarea>
+      <span class="help-block"><span id="chars">160</span> / 160 characters remaining</span>
     </div>
     <div class="col-md-2"></div>
   </div>

@@ -9,8 +9,8 @@ window.bridgelyApp = {
     init: function () {
         'use strict';
 
-        // bridgelyApp.apiUrl = "http://localhost:3000/v1";
-        bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
+        bridgelyApp.apiUrl = "http://localhost:3000/v1";
+        // bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
 
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
 
@@ -65,6 +65,24 @@ window.bridgelyApp = {
 
 $(document).ready(function () {
     'use strict';
+
+    $.fn.extend( {
+    limiter: function(limit, elem) {
+        $(this).on("keyup focus", function() {
+            setCount(this, elem);
+        });
+        function setCount(src, elem) {
+            var chars = src.value.length;
+            if (chars > limit) {
+                src.value = src.value.substr(0, limit);
+                chars = limit;
+            }
+            elem.html( limit - chars );
+        }
+        setCount($(this)[0], elem);
+      }
+    });
+
     bridgelyApp.init();
 }).ajaxError( function(event, jqxhr, settings, exception ) {
     console.log('error',event, jqxhr, settings, exception)
