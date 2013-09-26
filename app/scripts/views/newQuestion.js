@@ -15,6 +15,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.$el.html( this.template );
           $('#content').html( this.el );
           this.$("textarea").limiter(160, $("#chars"));
+
+          if( !bridgelyApp.session.get('company') ) {
+            this.$('button[type=submit]').prop('disabled', true).text('Select a company first...');
+          }
+
           return this.el;
         },
         events: {
