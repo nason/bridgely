@@ -82,33 +82,35 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             label: "Phone",
             cell: "string",
             editable: false
-          }, {
-            name: "data",
-            label: "Labels",
-            cell: Backgrid.StringCell.extend({
-              render: function () {
-                  this.$el.empty();
-                  var data = this.model.get('data');
-                  var labels = data.labels;
+          }
+        //   {
+        //     name: "data",
+        //     label: "Labels",
+        //     cell: Backgrid.StringCell.extend({
+        //       render: function () {
+        //           this.$el.empty();
+        //           var data = this.model.get('data');
+        //           var labels = data.labels;
 
-                  labels && this.$el.html( this.formatter.fromRaw( labels ) );
+        //           labels && this.$el.html( this.formatter.fromRaw( labels ) );
 
-                  this.delegateEvents();
-                  return this;
-              }
-            }),
-            formatter:  _.extend({}, Backgrid.CellFormatter.prototype, {
-              fromRaw: function (data) {
-                var output = [], data = data || [];
-                _(data).each(function( label ) {
-                  output.push( '<span class="label label-default">' + escape(label) + '</span>' );
-                })
-                return output.join(' ');
-              }
-            }),
-            editable: false,
-            sortable: false
-        }],
+        //           this.delegateEvents();
+        //           return this;
+        //       }
+        //     }),
+        //     formatter:  _.extend({}, Backgrid.CellFormatter.prototype, {
+        //       fromRaw: function (data) {
+        //         var output = [], data = data || [];
+        //         _(data).each(function( label ) {
+        //           output.push( '<span class="label label-default">' + escape(label) + '</span>' );
+        //         })
+        //         return output.join(' ');
+        //       }
+        //     }),
+        //     editable: false,
+        //     sortable: false
+        // }
+        ],
         template: JST['app/scripts/templates/employees.ejs'],
         events: {
           'click .boolean-cell input:checkbox' : 'check',
