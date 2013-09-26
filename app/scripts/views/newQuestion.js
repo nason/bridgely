@@ -14,6 +14,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.delegateEvents();
           this.$el.html( this.template );
           $('#content').html( this.el );
+          this.$("textarea").limiter(160, $("#chars"));
           return this.el;
         },
         events: {
@@ -39,7 +40,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             data: {
               question: {
                 title: this.$('#question-title').val(),
-                response_tag: this.$('#question-tag').val(),
+                response_tag: this.$('#question-title').val(),
                 message: {
                   body: this.$('textarea').val(),
                   employee_ids: recipients,
