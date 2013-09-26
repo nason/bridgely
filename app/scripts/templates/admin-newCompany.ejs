@@ -23,7 +23,7 @@
       <div class="col-md-8">
         <input class="form-control" type="text" name="company-name"></input>
         <p><em>Enter the company's name</em>.
-        <br />Twilio SMS Number will be provisioned on submission</p>
+        <br />A SMS Number will be provisioned on submission</p>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -33,14 +33,27 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Welcome Message</label>
       <div class="col-md-8">
-        <textarea class="form-control" rows="3" name="autoresponder"></textarea>
+        <textarea class="form-control" rows="4" name="autoresponder" placeholder="Enter the message employees will receive when they register in the mobile directory. Variables are available to insert dynamic values. Please be mindful of the 160 character message limit."></textarea>
         <small><em>160 / 160 Characters Left</em></small>
-  <!--       <code>
-          <p>Insert a Bridgely link with {{@link}}</p>
-          <p>Insert company name with {{@company}}</p>
-          <p>Insert employee's first name with {{@employee}}</p>
-        </code> -->
+        <p>
+          <code>
+            <br />Insert the welcome link with: [link]
+            <br />Insert the company name with: [company]
+            <br />Insert the employee's first name with: [name]
+          </code>
+        </p>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
 
+    <div class="form-group">
+      <label class="col-md-2 control-label">Welcome Link</label>
+      <div class="col-md-8">
+        <div class="input-group">
+          <input type="text" class="form-control" name="autoresponder-link" placeholder="www.example.com">
+          <span class="input-group-addon">/hash</span>
+        </div>
+        <small>Enter the root of the welcome link URL, a unique hash will be appended automatically for each employee</small>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -50,7 +63,7 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Name</label>
       <div class="col-md-8">
-        <input class="form-control" type="text" name="users-name"></input>
+        <input class="form-control" type="text" name="users-name" placeholder="The person's name"></input>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -66,7 +79,7 @@
     <div class="form-group">
       <label for"password" class="col-md-2 control-label">Password</label>
       <div class="col-md-8">
-        <input class="form-control" type="password" name="password"></input>
+        <input class="form-control" type="password" name="password" placeholder="At least 8 characters"></input>
       </div>
       <div class="col-md-2"></div>
     </div>
