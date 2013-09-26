@@ -27,7 +27,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
               company: {
                 name: this.$('input[name=company-name]').val(),
                 settings: {
-                  autoresponder: this.$('textarea[name=autoresponder]').val()
+                  autoresponder: this.$('textarea[name=autoresponder]').val(),
+                  responder_link_root: this.$('input[name=autoresponder-link]').val()
                 },
                 users: {
                   email: this.$('input[name=email]').val(),
