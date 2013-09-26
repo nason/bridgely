@@ -1,5 +1,7 @@
 $iconSpritePath: '/images/glyphicons-halflings.png';
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'backgrid';
+@import 'backgrid-paginator';
 
 html, body {
     height: 100%;
