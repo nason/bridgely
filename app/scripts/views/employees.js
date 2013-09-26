@@ -21,7 +21,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           this.listenTo(this.collection, "change add sync", this.render);
           this.listenTo(this.grid, "change", this.render);
+
           this.collection.fetch();
+
+          // Reset selected employees every time the directory page is navigated to
           bridgelyApp.session.resetNewMessageEmployeeIds();
         },
         tags: function() {
@@ -150,7 +153,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             var tagCol = this.grid.columns.where({ label: event.target.name });
             this.grid.removeColumn(tagCol);
           }
-          console.log(this.columns)
         },
         smsSelected: function(event) {
           event.preventDefault();
@@ -185,7 +187,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             paginator.render().$el
           );
           this.delegateEvents();
-          return this;
+          return this.el;
         }
     });
 })();
