@@ -9,7 +9,11 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
 
         model: bridgelyApp.Models.EmployeeModel,
         url: function() {
-          return bridgelyApp.apiUrl + "/employees"
+          if( bridgelyApp.session.get('admin') && bridgelyApp.session.get('company') ) {
+            return bridgelyApp.apiUrl + "/employees/company/" + bridgelyApp.session.get('company').id
+          } else {
+            return bridgelyApp.apiUrl + "/employees/"
+          }
         },
         state: {
           pageSize: 4
