@@ -18,6 +18,16 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
+          if( bridgelyApp.session.get('admin') && !bridgelyApp.session.get('company') ) {
+            this.grid.insertColumn([{
+              name: 'company_id',
+              label: 'Company ID',
+              cell: 'string',
+              sortable: true,
+              editable: false
+            }]);
+          }
+
           this.listenTo(this.collection, "change add sync", this.render);
           this.listenTo(this.grid, "change", this.render);
 
