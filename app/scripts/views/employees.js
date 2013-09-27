@@ -179,13 +179,49 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
+          var employeeFilter = Backgrid.Extension.ClientSideFilter.extend({
+            makeMatcher: function (query) {
+              var regexp = this.makeRegExp(query);
+              return function (model) {
+                var keys = this.fields || model.keys();
+                for (var i = 0, l = keys.length; i < l; i++) {
+
+                  // Search through tags in the data column
+                  if(keys[i] === "data" && model.get(keys[i]).tags ) {
+                    var employeeData = model.get(keys[i])
+                    for(var tag in employeeData.tags) {
+                      if( regexp.test( employeeData.tags[tag] + "" ) ) {
+                        return true;
+                      }
+                    }
+                  }
+
+                  else if (regexp.test(model.get(keys[i]) + "")) {
+                    return true;
+                  }
+                }
+                return false;
+              };
+            }
+          });
+
+          var filter = new employeeFilter({
+            collection: this.collection.fullCollection
+          });
+
+          // Add some space to the filter and move it to the right
+          filter.$el.css({margin: "20px"});
+
           $('#content').html( this.$el.html(this.template(this.collection)) );
 
           $('.backgrid-container').prepend(
             this.grid.render().$el
+          ).prepend(
+            filter.render().$el
           ).append(
             paginator.render().$el
           );
+
           this.delegateEvents();
           return this.el;
         }
