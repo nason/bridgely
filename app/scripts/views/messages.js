@@ -19,9 +19,23 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             cell: "string",
             editable: false
           }, {
-            name: "question_id",
-            label: "Question ID",
-            cell: "string",
+            name: "question",
+            label: "Question",
+            cell: Backgrid.StringCell.extend({
+              render: function() {
+                this.$el.empty();
+                if( this.model.attributes.question ) {
+                  this.$el.html( this.formatter.fromRaw( this.model.attributes.question ) )
+                }
+                this.delegateEvents();
+                return this;
+              }
+            }),
+            formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
+              fromRaw: function (data) {
+                return $('<a />').attr('href', '#question/' + data.id).text( data.title );
+              }
+            }),
             editable: false
           }, {
             name: "body",
