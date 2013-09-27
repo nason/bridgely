@@ -8,8 +8,7 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
     bridgelyApp.Routers.IndexRouter = Backbone.Router.extend({
       routes: {
         '' : 'index',
-        'settings' : 'settings',
-        'company' : 'company'
+        'settings' : 'settings'
         // '*catch' : 'index'
       },
       index: function() {
@@ -18,9 +17,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       },
       settings: function() {
         console.log('settings route!!');
-      },
-      company: function() {
-        console.log('company route!!')
       }
 
     });

@@ -52,6 +52,7 @@ window.bridgelyApp = {
         // });
 
         Backbone.history.start();
+        // Backbone.history.start({pushState:true});
 
         if( !bridgelyApp.session.authenticated() ) {
             bridgelyApp.LoginRouter.navigate('login', {trigger: true})

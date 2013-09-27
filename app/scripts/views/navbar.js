@@ -10,8 +10,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         el: $('<nav role="navigation" />'),
         events: {
           'click .home': 'home',
-          'click .account' : 'account',
-          'click .company' : 'company',
+          'click .settings' : 'settings',
           'click .directory' : 'directory',
           'click .login' : 'signIn',
           'click .logout' : 'signOut',
@@ -26,15 +25,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.toggleSelected();
           bridgelyApp.IndexRouter.navigate('', {trigger: true});
         },
-        account: function(event) {
+        settings: function(event) {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.IndexRouter.navigate('settings', {trigger: true});
-        },
-        company: function(event) {
-          event.preventDefault();
-          this.toggleSelected();
-          bridgelyApp.IndexRouter.navigate('company', {trigger: true});
         },
         directory: function(event) {
           event.preventDefault();
