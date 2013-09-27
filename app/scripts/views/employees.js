@@ -10,7 +10,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.EmployeesView = Backbone.View.extend({
 
         initialize: function() {
-          // TODO: Filter this to one company_id => the user's company id or the company the admin is viewing
           this.collection = new bridgelyApp.Collections.EmployeesCollection();
 
           this.grid = new Backgrid.Grid({

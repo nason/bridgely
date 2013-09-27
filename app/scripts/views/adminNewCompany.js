@@ -7,7 +7,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
     bridgelyApp.Views.AdminNewCompanyView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/admin-newCompany.ejs'],
+        template: JST['app/scripts/templates/adminNewCompany.ejs'],
         el: $('<form />'),
         events: {
           'submit' : 'createCompany'

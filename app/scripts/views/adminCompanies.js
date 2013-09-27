@@ -6,7 +6,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     'use strict';
 
     bridgelyApp.Views.AdminCompaniesView = Backbone.View.extend({
-        template: JST['app/scripts/templates/admin-companies.ejs'],
+        template: JST['app/scripts/templates/adminCompanies.ejs'],
         initialize: function() {
           this.collection = new bridgelyApp.Collections.AdminCompaniesCollection();
           this.collection.on('sync', function(collection, resp, options) {
@@ -40,6 +40,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             success: function(companyData) {
               bridgelyApp.session.set('company', companyData);
               bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+              new bridgelyApp.Views.AdminCompanyTopbar();
               // TODO add a message and back to admin button to the top of the page
             }
           })

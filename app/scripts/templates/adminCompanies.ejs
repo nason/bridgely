@@ -1,9 +1,6 @@
 <div class="admin-companies">
-  <div>
-    <button type="button" class="btn btn-company btn-lg btn-block btn-danger"><span class="glyphicon glyphicon-flash"></span> Add a New Company</button>
-  </div>
-  <div><p></p></div>
-  <div class="well companies list-group">
+    <h2>Companies Directory</h2>
+    <div class="well companies list-group">
 
     <% this.collection.each(function(model) { %>
       <a class="company list-group-item" id='companies-<%= model.id %>' href="#">
@@ -12,5 +9,9 @@
       </a>
     <% }) %>
 
+  </div>
+  <div><p></p></div>
+  <div>
+    <button type="button" class="btn btn-company btn-lg btn-block btn-danger"><span class="glyphicon glyphicon-flash"></span> Add a New Company</button>
   </div>
 </div>
