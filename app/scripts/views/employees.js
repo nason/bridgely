@@ -145,7 +145,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
                   return data.tags[event.target.name];
                 }
               }),
-              sortable: false,
+              sortable: true,
               editable: false
             }]);
           } else {
