@@ -48,9 +48,13 @@
     Mobile Directory
   </h2>
 
+<div class="grid-filter pull-right"></div>
+
   <h4>
     <% if(bridgelyApp.session.get('company')) { %>
     <%= bridgelyApp.session.get('company').settings.account_phone_number %>
+    <% } else { %>
+      Admin View
     <% } %>
   </h4>
 

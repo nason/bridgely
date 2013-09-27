@@ -180,6 +180,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           });
 
           var employeeFilter = Backgrid.Extension.ClientSideFilter.extend({
+            template: _.template('<input type="search" results=0 autocomplete="off" <% if (placeholder) { %> placeholder="<%- placeholder %>" <% } %> name="<%- name %>" /><a class="clear" href="#">&times;</a>'),
             makeMatcher: function (query) {
               var regexp = this.makeRegExp(query);
               return function (model) {
@@ -206,20 +207,21 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           });
 
           var filter = new employeeFilter({
+            className: 'form-search',
+            placeholder: 'Filter Directory',
             collection: this.collection.fullCollection
           });
-
-          // Add some space to the filter and move it to the right
-          filter.$el.css({margin: "20px"});
 
           $('#content').html( this.$el.html(this.template(this.collection)) );
 
           $('.backgrid-container').prepend(
             this.grid.render().$el
-          ).prepend(
-            filter.render().$el
           ).append(
             paginator.render().$el
+          );
+
+          $('.grid-filter').html(
+            filter.render().$el
           );
 
           this.delegateEvents();
