@@ -8,7 +8,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.MessagesView = Backbone.View.extend({
 
         initialize: function() {
-          // TODO: Filter this to one company_id => the user's company id or the company the admin is viewing
           this.collection = new bridgelyApp.Collections.MessagesCollection(),
           this.listenTo(this.collection, "change add", this.render);
           this.collection.fetch();
