@@ -23,7 +23,7 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
           } else {
             console.log('employee route for id: ' + id);
             var employee = new bridgelyApp.Models.EmployeeModel({id: id})
-            new bridgelyApp.Views.EmployeeView({model: employee}).render();
+            new bridgelyApp.Views.EmployeeView({model: employee});
           }
         })
       }
