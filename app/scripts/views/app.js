@@ -30,7 +30,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           this.on('authenticated', this.authenticated, this);
           this.on('admin-authenticated', this.adminAuth, this);
-
+          this.on('unauthenticate', this.unauthenticate, this);
         },
 
         template: JST['app/scripts/templates/app.ejs'],
@@ -44,6 +44,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           _.once( this.navbar.render() );
 
           this.$el.append(this.footer.$el);
+        },
+        unauthenticate: function() {
+          bridgelyApp.IndexRouter.navigate('', {trigger: true});
         },
         authenticated: function() {
           bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});

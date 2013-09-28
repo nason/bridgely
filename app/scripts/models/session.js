@@ -56,7 +56,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
             url: this.url()+'/logout',
             complete: function() {
               session.destroy();
-              bridgelyApp.IndexRouter.navigate('', {trigger: true})
+              bridgelyApp.appView.trigger('unauthenticate');
             }
           });
         }
