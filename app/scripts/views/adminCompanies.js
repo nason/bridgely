@@ -33,9 +33,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           $.ajax({
             method: 'GET',
-            headers: {
-              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
-            },
             url: bridgelyApp.apiUrl + '/admin/companies/' + companyId,
             success: function(companyData) {
               bridgelyApp.session.set('company', companyData);

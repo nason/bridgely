@@ -8,10 +8,15 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.AppView = Backbone.View.extend({
 
         initialize: function() {
-          // $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-            // Your server goes below
-            // options.url = 'http://localhost:3000' + options.url;
-          // });
+          $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+            //Your server goes below
+            //options.url = 'http://localhost:3000' + options.url;
+            if( bridgelyApp.session.get('auth_token') ) {
+              options.headers = {
+                'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
+              };
+            }
+          });
 
           // Rails CSRF Protection
           // $(document).ajaxSend(function (e, xhr, options) {

@@ -13,17 +13,7 @@ window.bridgelyApp = {
         bridgelyApp.apiUrl = "http://fierce-anchorage-5632.herokuapp.com/v1";
         // bridgelyApp.apiUrl = "/v1";
 
-
         bridgelyApp.session = new bridgelyApp.Models.SessionModel();
-
-        // If authenticated, send authorization header with every ajax request
-        if( bridgelyApp.session.authenticated() ) {
-          $.ajaxSetup({
-            headers: {
-              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
-            }
-          });
-        }
 
         bridgelyApp.appView = new bridgelyApp.Views.AppView({model: bridgelyApp.session});
 
@@ -69,6 +59,8 @@ window.bridgelyApp = {
 $(document).ready(function () {
     'use strict';
 
+    bridgelyApp.init();
+
     $.fn.extend( {
     limiter: function(limit, elem) {
         $(this).on("keyup focus", function() {
@@ -86,7 +78,7 @@ $(document).ready(function () {
       }
     });
 
-    bridgelyApp.init();
+
 }).ajaxError( function(event, jqxhr, settings, exception ) {
     console.log('error',event, jqxhr, settings, exception)
     // Capture any ajax request that returns a 401 unauthorized and go to login page
@@ -95,6 +87,6 @@ $(document).ready(function () {
       window.location = '#login';
       bridgelyApp.session.destroy();
     } else if (jqxhr.status === 403) {
-      window.location = '#denied'
+      window.location = '#denied';
     }
 });

@@ -32,10 +32,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $.ajax({
             type: 'PUT',
             url: bridgelyApp.apiUrl + '/admin/companies/' + bridgelyApp.session.get('company').id,
-            headers: {
-              // left this in bc ajaxSetup headers didn't apply here?
-              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
-            },
             data: {
               company: {
                 settings: {

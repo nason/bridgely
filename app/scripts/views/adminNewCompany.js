@@ -19,10 +19,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $.ajax({
             type: 'POST',
             url: bridgelyApp.apiUrl + '/admin/companies',
-            headers: {
-              // left this in bc ajaxSetup headers didn't apply here?
-              'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
-            },
             data: {
               company: {
                 name: this.$('input[name=company-name]').val(),

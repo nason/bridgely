@@ -51,10 +51,6 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           var session = this;
           $.ajax({
             type: 'DELETE',
-            headers: {
-              // left this in bc ajaxSetup headers didn't apply here?
-              'Authorization': "Token token="+this.get('auth_token')
-            },
             url: this.url()+'/logout',
             complete: function() {
               session.destroy();
