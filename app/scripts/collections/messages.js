@@ -9,10 +9,12 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
 
         model: bridgelyApp.Models.MessageModel,
         url: function() {
-          if( bridgelyApp.session.get('admin') && bridgelyApp.session.get('company') ) {
-            return bridgelyApp.apiUrl + "/messages/company/" + bridgelyApp.session.get('company').id
+          return bridgelyApp.apiUrl + "/companies/" + bridgelyApp.session.get('company').id + "/messages";
+
+          if( bridgelyApp.session.get('admin') && !bridgelyApp.session.get('company') ) {
+            return bridgelyApp.apiUrl + "/messages";
           } else {
-            return bridgelyApp.apiUrl + "/messages"
+            return bridgelyApp.apiUrl + "/companies/" + bridgelyApp.session.get('company').id + "/messages";
           }
         },
         state: {

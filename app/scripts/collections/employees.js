@@ -9,10 +9,10 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
 
         model: bridgelyApp.Models.EmployeeModel,
         url: function() {
-          if( bridgelyApp.session.get('admin') && bridgelyApp.session.get('company') ) {
-            return bridgelyApp.apiUrl + "/employees/company/" + bridgelyApp.session.get('company').id
+          if( bridgelyApp.session.get('admin') && !bridgelyApp.session.get('company') ) {
+            return bridgelyApp.apiUrl + "/employees";
           } else {
-            return bridgelyApp.apiUrl + "/employees"
+            return bridgelyApp.apiUrl + "/companies/" + bridgelyApp.session.get('company').id + "/employees";
           }
         },
         state: {
