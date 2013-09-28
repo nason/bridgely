@@ -53,10 +53,6 @@ window.bridgelyApp = {
         Backbone.history.start();
         // Backbone.history.start({pushState:true});
 
-        // if( bridgelyApp.session.authenticated() ) {
-        //     bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
-        // }
-
         console.log('Hello from Bridgely!');
     }
 };
@@ -83,17 +79,17 @@ $(document).ready(function () {
 
     bridgelyApp.init();
 
-
 });
 
-// .ajaxError( function(event, jqxhr, settings, exception ) {
-//     console.log('error',event, jqxhr, settings, exception)
-//     // Capture any ajax request that returns a 401 unauthorized and go to login page
-//     // On 403 forbidden go to denied page
-//     if (jqxhr.status === 401) {
-//       window.location = '#login';
-//       bridgelyApp.session.destroy();
-//     } else if (jqxhr.status === 403) {
-//       window.location = '#denied';
-//     }
-// });
+$(document).ajaxError( function(event, jqxhr, settings, exception ) {
+    console.log('error',event, jqxhr, settings, exception)
+    // Capture any ajax request that returns a 401 unauthorized and go to login page
+    // On 403 forbidden go to denied page
+    // TODO: Flash error message, destroy session?
+    if (jqxhr.status === 401) {
+      window.location = '#login';
+      bridgelyApp.session.destroy();
+    } else if (jqxhr.status === 403) {
+      window.location = '#denied';
+    }
+});
