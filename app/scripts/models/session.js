@@ -10,6 +10,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
     bridgelyApp.Models.SessionModel = Backbone.Model.extend({
       defaults: {
         "name": null,
+        "short_name" : null,
         "email": null,
         "admin": false,
         "company": null,
@@ -71,6 +72,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           var session = JSON.parse( this.storage.getItem('session') );
           this.set({
             "name": session.name,
+            "short_name" : session.short_name,
             "email": session.email,
             "admin": session.admin,
             "company": session.company,
@@ -84,6 +86,7 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         this.storage.clear();
         this.set({
           "name": null,
+          "short_name": null,
           "email": null,
           "admin": false,
           "company": null,
