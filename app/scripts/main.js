@@ -85,6 +85,7 @@ $(document).ajaxError( function(event, jqxhr, settings, exception ) {
     // On 403 forbidden go to denied page
     // TODO: Flash error message, destroy session?
     if (jqxhr.status === 401) {
+      bridgelyApp.session.destroy();
       bridgelyApp.LoginRouter.navigate('login', {trigger:true});
     } else if (jqxhr.status === 403) {
       bridgelyApp.IndexRouter.navigate('', {trigger:true});
