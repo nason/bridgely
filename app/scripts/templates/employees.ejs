@@ -23,7 +23,7 @@
         <% _.each(this.tags(), function(tag) { %>
           <div class="tag-list-item list-group-item">
             <label>
-              <input type="checkbox" name=<%=tag%>> <%= tag.replace(/"/g, "") %></input>
+              <input type="checkbox" name="<%=tag%>"> <%= tag.replace(/"/g, "") %></input>
             </label>
           </div>
         <% }) %>
