@@ -45,6 +45,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.$el.append(this.footer.$el);
         },
         unauthenticate: function() {
+          this.render();
           bridgelyApp.IndexRouter.navigate('', {trigger: true});
         },
         authenticated: function() {
