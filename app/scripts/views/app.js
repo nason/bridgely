@@ -29,6 +29,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.footer = new bridgelyApp.Views.FooterView();
 
           this.on('authenticated', this.authenticated, this);
+          this.on('admin-authenticated', this.adminAuth, this);
 
         },
 
@@ -46,6 +47,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         authenticated: function() {
           bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+        },
+        adminAuth: function() {
+          bridgelyApp.AdminRouter.navigate('admin/companies', {trigger: true});
         }
 
     });

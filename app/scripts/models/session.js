@@ -35,11 +35,13 @@ bridgelyApp.Models = bridgelyApp.Models || {};
           success: function(data) {
             if(data.admin === true) {
               this.admin = true;
-              // TODO trigger an admin authentication event?
             }
             session.save(data);
             session.load();
-            bridgelyApp.appView.trigger('authenticated');
+
+            (this.admin)
+              ? bridgelyApp.appView.trigger('admin-authenticated')
+              : bridgelyApp.appView.trigger('authenticated');
           },
           error: function() {
             session.trigger('authentication-error');
