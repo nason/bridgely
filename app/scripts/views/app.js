@@ -24,7 +24,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           //   xhr.setRequestHeader("X-CSRF-Token", token);
           // });
 
-
           this.navbar = new bridgelyApp.Views.NavbarView();
           this.footer = new bridgelyApp.Views.FooterView();
 
@@ -41,6 +40,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $('body').html(this.el);
 
           this.$el.prepend(this.navbar.$el);
+          _.once( this.navbar.render() );
+
           this.$el.append(this.footer.$el);
         },
         unauthenticate: function() {
