@@ -1,3 +1,8 @@
+// Google Fonts
+@import url(//fonts.googleapis.com/css?family=Dancing+Script:700);
+@import url(//fonts.googleapis.com/css?family=Cabin);
+@import url(//fonts.googleapis.com/css?family=Gloria+Hallelujah);
+
 $iconSpritePath: '/images/glyphicons-halflings.png';
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'backgrid';
@@ -6,7 +11,7 @@ $iconSpritePath: '/images/glyphicons-halflings.png';
 
 html, body {
     height: 100%;
-    /*font-family: 'Cabin', Helvetica, Arial, sans-serif;*/
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
 }
 
 #bridgely-app {
@@ -15,9 +20,22 @@ html, body {
   margin-bottom: 20px;
 }
 
+.navbar-brand {
+    font-family: 'Dancing Script', Helvetica, sans-serif;
+    color: rgba(44, 38, 60, 0.66) !important;
+    text-shadow: 4px 4px 1px rgba(0,0,0,0.1),
+                 1px -2px 10px rgba(0, 0, 107, 0.3),
+                 2px 1px 4px rgba(17, 121, 83, 0.5) !important;
+    font-size: 3.5em !important;
+}
+
 .hero-unit {
   margin: 50px auto 0 auto;
   width: 300px;
+}
+
+.btn {
+    font-family: 'Gloria Hallelujah', sans-serif;
 }
 
 .loader {
