@@ -10,7 +10,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         el: $('<nav role="navigation" />'),
         events: {
           'click .home': 'home',
-          'click .settings' : 'settings',
+          'click .account' : 'settings',
           'click .directory' : 'directory',
           'click .login' : 'signIn',
           'click .logout' : 'signOut',

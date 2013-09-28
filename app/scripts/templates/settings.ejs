@@ -1,0 +1,47 @@
+<div class='col-md-2'></div>
+
+<div class='well col-md-8'>
+  <legend>
+    <%= bridgelyApp.session.get('company').name || "N/A" %> Settings
+  </legend>
+
+  <div class="form-group clearfix">
+    <label class="col-md-2 control-label">Welcome Message</label>
+    <div class="col-md-8">
+      <textarea class="form-control" rows="4" name="autoresponder"></textarea>
+      <small><em><span id="chars">160</span> / 160 Characters Left</em></small>
+      <p>
+        <code>
+          <br />Insert the welcome link with: [link]
+          <br />Insert the company name with: [company]
+          <br />Insert the employee's first name with: [name]
+        </code>
+      </p>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="form-group clearfix">
+    <label class="col-md-2 control-label">Welcome Link</label>
+    <div class="col-md-8">
+      <div class="input-group">
+        <input type="text" class="form-control" id="responder-link-root" value="<%=bridgelyApp.session.get('company').settings.responder_link_root%>">
+        <span class="input-group-addon">/hash</span>
+      </div>
+      <small>Enter the root of the welcome link URL, a unique hash will be appended automatically for each employee</small>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="form-group clearfix">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <button type="submit" class="btn btn-lg btn-danger btn-block"><span class="glyphicon glyphicon-flash"></span> Update Company</button>
+      </div>
+      <div class="col-md-2"><span class="help-block"><br />or, <a href="#">cancel</a></span></div>
+  </div>
+
+
+</div>
+
+<div class='col-md-2'></div>
