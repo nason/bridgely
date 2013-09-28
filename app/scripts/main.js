@@ -53,6 +53,10 @@ window.bridgelyApp = {
         Backbone.history.start();
         // Backbone.history.start({pushState:true});
 
+        // if( bridgelyApp.session.authenticated() ) {
+        //     bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+        // }
+
         console.log('Hello from Bridgely!');
     }
 };

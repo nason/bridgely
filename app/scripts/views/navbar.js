@@ -73,6 +73,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.$el.addClass("navbar navbar-default container");
           this.$el.html( this.template() );
           this.delegateEvents();
+          return this.el
         },
         initialize: function() {
           this.render();

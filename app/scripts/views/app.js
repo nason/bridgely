@@ -35,13 +35,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/app.ejs'],
         el: $('<main />'),
         render: function() {
-
-          // TODO: Authentication state and role determine the navmenu render and the company_id for the session
           this.$el.html( this.template ).attr('id', 'bridgely');
-
-          // Add the header and footer
-          // this.$el.prepend(navbar.render())
-          // this.$el.append(footer.render());
 
           $('body').html(this.el);
 
@@ -49,10 +43,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           _.once( this.navbar.render() );
 
           this.$el.append(this.footer.$el);
-
-          this.delegateEvents();
-          return this.el;
-
         },
         authenticated: function() {
           bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
