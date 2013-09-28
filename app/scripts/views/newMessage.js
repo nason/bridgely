@@ -11,7 +11,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         el: $('<form />'),
 
         render: function() {
-          this.delegateEvents();
           this.$el.html( this.template );
           $('#content').html( this.el );
           this.$("textarea").limiter(160, $("#chars"));
@@ -19,6 +18,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           if( !bridgelyApp.session.get('company') ) {
             this.$('button[type=submit]').prop('disabled', true).text('Select a company first...');
           }
+          this.delegateEvents();
 
           return this.el;
         },

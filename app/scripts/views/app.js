@@ -50,6 +50,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
           this.$el.append(this.footer.$el);
 
+          this.delegateEvents();
+          return this.el;
+
         },
         authenticated: function() {
           bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
