@@ -22,6 +22,8 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
             throw new Error('employee id must be present');
           } else {
             console.log('employee route for id: ' + id);
+            var employee = new bridgelyApp.Models.EmployeeModel({id: id})
+            new bridgelyApp.Views.EmployeeView({model: employee}).render();
           }
         })
       }

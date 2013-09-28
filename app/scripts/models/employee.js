@@ -11,6 +11,9 @@ bridgelyApp.Models = bridgelyApp.Models || {};
         "phone":  null,
         "company_id":  null,
         "data":  null
+      },
+      url: function() {
+        return bridgelyApp.apiUrl + '/employees/' + this.id
       }
     });
 
