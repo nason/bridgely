@@ -16,7 +16,7 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
           }
         },
         state: {
-          pageSize: 10
+          pageSize: 50
         },
         mode: "client"
 

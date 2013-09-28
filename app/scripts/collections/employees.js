@@ -16,7 +16,7 @@ bridgelyApp.Collections = bridgelyApp.Collections || {};
           }
         },
         state: {
-          pageSize: 4
+          pageSize: 50
         },
         mode: "client" // page entirely on the client side
 
