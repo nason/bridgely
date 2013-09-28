@@ -8,9 +8,9 @@ bridgelyApp.Models = bridgelyApp.Models || {};
     bridgelyApp.Models.AdminCompanyModel = Backbone.Model.extend({
       defaults: {
         "name": null,
-        "settings": null
+        "settings": null,
+        "users": null
       }
-
     });
 
 })();
