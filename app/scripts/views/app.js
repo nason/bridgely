@@ -30,6 +30,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.on('authenticated', this.authenticated, this);
           this.on('admin-authenticated', this.adminAuth, this);
           this.on('unauthenticate', this.unauthenticate, this);
+
+          this.render();
         },
 
         template: JST['app/scripts/templates/app.ejs'],
