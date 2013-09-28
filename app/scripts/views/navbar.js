@@ -19,32 +19,32 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           'click .admin-users' : 'adminUsers',
           'click .admin-companies' : 'adminCompanies'
         },
-        settings: function(event) {
+        settings: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.IndexRouter.navigate('settings', {trigger: true});
         },
-        directory: function(event) {
+        directory: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
         },
-        newMessage: function(event) {
+        newMessage: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.MessageRouter.navigate('message', {trigger: true})
         },
-        newQuestion: function(event) {
+        newQuestion: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.QuestionRouter.navigate('question', {trigger: true})
         },
-        messageHistory: function(event) {
+        messageHistory: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.MessageRouter.navigate('message-history', {trigger: true})
         },
-        adminUsers: function(event) {
+        adminUsers: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.AdminRouter.navigate('admin/users', {trigger:true});
@@ -54,18 +54,17 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           this.toggleSelected();
           bridgelyApp.AdminRouter.navigate('admin/companies', {trigger:true});
         },
-        signIn: function(event) {
+        signIn: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.LoginRouter.navigate('login', {trigger: true});
         },
-        signOut: function(event) {
+        signOut: function() {
           event.preventDefault();
           this.toggleSelected();
           bridgelyApp.session.logout();
         },
         toggleSelected: function() {
-          // TODO: Call this on route event?
           this.$('.active').removeClass('active');
           $(event.target.parentElement).addClass('active');
         },
