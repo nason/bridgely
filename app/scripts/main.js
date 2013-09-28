@@ -88,8 +88,8 @@ $(document).ajaxError( function(event, jqxhr, settings, exception ) {
     // TODO: Flash error message, destroy session?
     if (jqxhr.status === 401) {
       window.location = '#login';
-      bridgelyApp.session.destroy();
+      bridgelyApp.LoginRuter.navigate('login', {trigger:true});
     } else if (jqxhr.status === 403) {
-      window.location = '#denied';
+      bridgelyApp.IndexRouter.navigate('', {trigger:true});
     }
 });
