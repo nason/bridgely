@@ -12,10 +12,12 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           'click .admin-return' : 'clearAdminCompany'
         },
         clearAdminCompany: function() {
+          $('#topbar').empty();
           bridgelyApp.session.set('company', null);
           bridgelyApp.AdminRouter.navigate('admin/companies', {trigger: true});
         },
         render: function() {
+          $('#topbar').empty();
           this.$el.html( this.template )
                   .addClass('panel panel-danger admin-topbar');
           this.delegateEvents();
