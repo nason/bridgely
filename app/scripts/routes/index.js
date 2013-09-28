@@ -19,7 +19,15 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         // '*catch' : 'index'
       },
       index: function() {
-        bridgelyApp.appView.render();
+        if( !bridgelyApp.session || !bridgelyApp.session.authenticated() ) {
+          bridgelyApp.appView.render();
+        } else {
+
+          (bridgelyApp.session.get('admin'))
+          ? bridgelyApp.appView.trigger('admin-authenticated')
+          : bridgelyApp.appView.trigger('authenticated');
+
+        }
       },
       settings: function() {
         this.requireLogin(function() {
