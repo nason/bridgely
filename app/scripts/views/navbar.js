@@ -9,7 +9,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/navbar.ejs'],
         el: $('<nav role="navigation" />'),
         events: {
-          'click .home': 'home',
           'click .account' : 'settings',
           'click .directory' : 'directory',
           'click .login' : 'signIn',
@@ -19,11 +18,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           'click .message-history' : 'messageHistory',
           'click .admin-users' : 'adminUsers',
           'click .admin-companies' : 'adminCompanies'
-        },
-        home: function(event) {
-          event.preventDefault();
-          this.toggleSelected();
-          bridgelyApp.IndexRouter.navigate('', {trigger: true});
         },
         settings: function(event) {
           event.preventDefault();
