@@ -29,17 +29,23 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           event.preventDefault();
           this.$('button[type=submit]').prop('disabled', true);
 
+          var payload = {
+            company: {
+              settings: {
+                autoresponder: this.$('textarea').val(),
+                responder_link_root: this.$('#responder-link-root').val(),
+              }
+            }
+          };
+
+          if( bridgelyApp.session.get('admin') ) {
+            payload.company.short_name = this.$('#short-name').val();
+          }
+
           $.ajax({
             type: 'PUT',
             url: bridgelyApp.apiUrl + '/admin/companies/' + bridgelyApp.session.get('company').id,
-            data: {
-              company: {
-                settings: {
-                  autoresponder: this.$('textarea').val(),
-                  responder_link_root: this.$('#responder-link-root').val()
-                }
-              }
-            },
+            data: payload,
             success: function(companyData) {
               // todo: success topbar
               bridgelyApp.session.set('company', companyData);

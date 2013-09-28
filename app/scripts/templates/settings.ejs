@@ -33,6 +33,16 @@
     <div class="col-md-2"></div>
   </div>
 
+<% if( bridgelyApp.session.get('admin') ) { %>
+  <div class="form-group clearfix">
+    <label class="col-md-2 control-label">Identifier</label>
+    <div class="col-md-8">
+      <input class="form-control" type="text" id="short-name" value="<%= bridgelyApp.session.get('company').short_name %>"></input>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+<% } %>
+
   <div class="form-group clearfix">
       <div class="col-md-2"></div>
       <div class="col-md-8">
