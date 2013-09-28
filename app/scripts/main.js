@@ -43,8 +43,6 @@ window.bridgelyApp = {
         //     bridgelyApp.Routers[name] = new router();
         // });
 
-        bridgelyApp.appView.render();
-
         // Reload correct view on page refresh
         if(Backbone.history.fragment) {
             Backbone.history.loadUrl(Backbone.history.fragment);
