@@ -19,11 +19,9 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         // '*catch' : 'index'
       },
       index: function() {
-        console.log('index route!!');
-        $('body').html(bridgelyApp.appView.render())
+        bridgelyApp.appView.render();
       },
       settings: function() {
-        console.log('settings route!!');
         this.requireLogin(function() {
           new bridgelyApp.Views.SettingsView().render();
         })

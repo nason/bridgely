@@ -19,7 +19,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         'question-history' : 'questionHistory'
       },
       newQuestion: function() {
-        console.log('new question route');
         this.requireLogin(function() {
           new bridgelyApp.Views.newQuestionView().render();
         })

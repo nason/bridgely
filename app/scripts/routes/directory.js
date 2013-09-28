@@ -24,7 +24,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
           if( page === undefined || !Number(page) ) {
             page =  0;
           }
-          console.log('directory route page ' + page)
 
           new bridgelyApp.Views.EmployeesView().render();
         });

@@ -19,7 +19,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         'message-history' : 'messageHistory'
       },
       newMessage: function() {
-        console.log('new message route!!');
         this.requireLogin(function() {
           new bridgelyApp.Views.newMessageView().render();
         })
@@ -34,8 +33,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
       messageHistory: function() {
         console.log('message history route');
         this.requireLogin( function() {
-          // router sends params as string
-          // check if string is a number, otherwise default to 0
           new bridgelyApp.Views.MessagesView().render();
         });
       }

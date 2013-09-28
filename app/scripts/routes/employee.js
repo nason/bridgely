@@ -6,17 +6,25 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
     'use strict';
 
     bridgelyApp.Routers.EmployeeRouter = Backbone.Router.extend({
+      requireLogin: function(ifYes) {
+        if (bridgelyApp.session.authenticated()) {
+          if (_.isFunction(ifYes)) ifYes.call(this);
+        } else {
+          bridgelyApp.LoginRouter.navigate('login', {trigger: true})
+        }
+      },
       routes: {
         'employee/:id' : 'employee'
       },
       employee: function(id) {
-        if ( id === undefined || !Number(id) ) {
-          throw new Error('employee id must be present');
-        } else {
-          console.log('employee route for id: ' + id);
-        }
+        this.requireLogin(function() {
+          if ( id === undefined || !Number(id) ) {
+            throw new Error('employee id must be present');
+          } else {
+            console.log('employee route for id: ' + id);
+          }
+        })
       }
-
     });
 
 })();
