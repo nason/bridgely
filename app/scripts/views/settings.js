@@ -44,9 +44,9 @@ bridgelyApp.Views = bridgelyApp.Views || {};
                 }
               }
             },
-            success: function() {
+            success: function(companyData) {
               // todo: success topbar
-              // todo: update session company settings obj
+              bridgelyApp.session.set('company', companyData);
               bridgelyApp.MessageRouter.navigate('directory', {trigger: true});
 
             },
