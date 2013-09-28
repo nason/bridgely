@@ -31,7 +31,6 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             }),
             formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
               fromRaw: function (employee_ids, direction) {
-                console.log(direction);
                 var verb = ( direction === 'inbound' ) ? 'Received' : 'Sent';
                 if( employee_ids.length === 0) {
                   return $('<code />').text('0 ' + verb);
