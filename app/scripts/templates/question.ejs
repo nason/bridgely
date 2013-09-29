@@ -1,4 +1,3 @@
-<% console.log(this.model.attributes) %>
 <h2><span class="label label-default"><%= this.model.get('title') %></span></h2>
 <h3><%= this.model.get('message').body %></h3>
 
@@ -6,9 +5,12 @@
   <% _(this.model.get('employees')).each(function(employee) { %>
     <div class="list-group-item">
       <div class="list-group-item-text">
-      <%= employee.name %>
+      <a href=# class="employee employee-<%=employee.id%>"> <%= employee.name %> </a>
+      <% if (employee.data && employee.data.tags && employee.data.tags[ this.model.get('title') ] )  { %>
+        <span class="label label-default"><%= employee.data.tags[ this.model.get('title') ] %></span>
+      <% } %>
       </div>
     </div>
-  <% }) %>
-
+  <% }, this) %>
 </div>
+<h5><a href=# class=back>&larr; Back to message history</a></h5>
