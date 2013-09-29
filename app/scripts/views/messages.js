@@ -55,7 +55,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             }),
             formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
               fromRaw: function (data) {
-                return $('<a />').attr('href', '#question/' + data.id).text( data.title );
+                return $('<a />').attr('href', '#').addClass('question question-' + data.id).text( data.title );
               }
             }),
             editable: false
@@ -74,6 +74,14 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           })
         },
         template: JST['app/scripts/templates/messages.ejs'],
+        events: {
+          'click .question' : 'viewQuestion'
+        },
+        viewQuestion: function() {
+          event.preventDefault();
+          var questionId = event.target.className.split('-')[1];
+          bridgelyApp.QuestionRouter.navigate('question/' + questionId, {trigger: true});
+        },
         render: function() {
 
           // Initialize the paginator
@@ -81,14 +89,14 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             collection: this.collection
           });
 
-          $('#content').html( this.template );
+          $('#content').html( this.$el.html(this.template) );
 
           $('.backgrid-container').prepend(
             this.messagesGrid().render().$el
           ).append(
             paginator.render().$el
           );
-
+          this.delegateEvents();
           return this.el;
         }
     });
