@@ -1,0 +1,14 @@
+<% console.log(this.model.attributes) %>
+<h2><span class="label label-default"><%= this.model.get('title') %></span></h2>
+<h3><%= this.model.get('message').body %></h3>
+
+<div class="recipients">
+  <% _(this.model.get('employees')).each(function(employee) { %>
+    <div class="list-group-item">
+      <div class="list-group-item-text">
+      <%= employee.name %>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
