@@ -34,17 +34,30 @@ bridgelyApp.Views = bridgelyApp.Views || {};
 
         if( this.model.get('messages') ) {
           _( this.model.get('messages').reverse() ).each(function(activity) {
-            // if activity.message.question - do stuff with activity.question
 
             var $record = $('<div />').addClass("list-group-item");
             $record.append( $('<h4 />').addClass("list-group-item-heading").text(activity.message.body) );
             $record.append( $('<p />').addClass("list-group-item-text").text(activity.message.direction) );
 
+            if( activity.question_id ) {
+              var $question = $('<span />').addClass('pull-right');
+
+              ( activity.message.direction === 'outbound' )
+                ? $question.text('Asked: ')
+                : $question.text('Answered: ');
+
+              var $label = $('<a />').prop('href','#').addClass('question question-' + activity.question.id);
+              $label.append( $('<span />').addClass('label label-default').text( activity.question.title ) );
+              $question.append( $label )
+
+              $record.find('.list-group-item-text').prepend( $question )
+            }
+
             this.$('.messages').append( $record );
 
           }, this)
         }
-
+        this.$('.preloader').hide()
         this.delegateEvents();
         return this.el;
       },
