@@ -24,7 +24,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         events: {
           'submit' : 'sendQuestion',
-          'click #success-button' : 'next'
+          'click #success-button' : 'next',
+          'click .cancel' : 'cancel'
         },
         sendQuestion: function(event) {
           event.preventDefault();
@@ -69,8 +70,11 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             bridgelyApp.MessageRouter.navigate('message-history', {trigger: true});
           })
           this.$('#successModal').modal('hide');
+        },
+        cancel: function() {
+          event.preventDefault();
+          bridgelyApp.DirectoryRouter.navigate('directory',{trigger:true});
         }
-
     });
 
 })();

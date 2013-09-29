@@ -10,7 +10,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/settings.ejs'],
         el: $('<form />'),
         events: {
-          'submit' : 'submitSettings'
+          'submit' : 'submitSettings',
+          'click .cancel' : 'cancel'
         },
         render: function() {
           this.delegateEvents();
@@ -24,6 +25,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           }
 
           return this.el;
+        },
+        cancel: function() {
+          event.preventDefault();
+          bridgelyApp.IndexRouter.navigate('',{trigger:true});
         },
         submitSettings: function(event) {
           event.preventDefault();

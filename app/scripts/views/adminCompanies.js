@@ -13,6 +13,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             this.render();
           }, this);
           this.collection.fetch();
+          this.unloadCompany();
         },
         events: {
           'click .company' : 'loadCompany',
@@ -42,6 +43,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             }
           })
 
+        },
+        unloadCompany: function() {
+          $('#topbar').empty();
+          bridgelyApp.session.set('company', null);
         },
         newCompany: function(event) {
           event.preventDefault();

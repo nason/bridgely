@@ -10,7 +10,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         template: JST['app/scripts/templates/adminNewCompany.ejs'],
         el: $('<form />'),
         events: {
-          'submit' : 'createCompany'
+          'submit' : 'createCompany',
+          'click .cancel' : 'cancel'
         },
         createCompany: function(event) {
           event.preventDefault();
@@ -46,6 +47,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
               alert('Oh no, something went wrong. Try again...');
             }
           })
+        },
+        cancel: function() {
+          event.preventDefault();
+          bridgelyApp.AdminRouter.navigate('admin/companies',{trigger:true});
         },
         render: function() {
           this.$el.html( this.template ).addClass('form-horizontal').attr('role', 'form');

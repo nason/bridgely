@@ -24,7 +24,8 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         },
         events: {
           'submit' : 'sendMessage',
-          'click #success-button' : 'next'
+          'click #success-button' : 'next',
+          'click .canel' : 'cancel'
         },
         sendMessage: function(event) {
           event.preventDefault();
@@ -66,6 +67,10 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           })
 
           this.$('#successModal').modal('hide');
+        },
+        cancel: function() {
+          event.preventDefault();
+          bridgelyApp.DirectoryRouter.navigate('directory',{trigger:true});
         }
 
     });
