@@ -11,7 +11,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
           $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
             //Your server goes below
             //options.url = 'http://localhost:3000' + options.url;
-            if( bridgelyApp.session.get('auth_token') ) {
+            if( bridgelyApp.session.authenticated() ) {
               options.headers = {
                 'Authorization': "Token token="+bridgelyApp.session.get('auth_token')
               };
