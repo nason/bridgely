@@ -8,6 +8,13 @@ bridgelyApp.Views = bridgelyApp.Views || {};
     bridgelyApp.Views.EmployeeView = Backbone.View.extend({
       model: bridgelyApp.Models.EmployeeModel,
       template: JST['app/scripts/templates/employee.ejs'],
+      events: {
+        'click .back' : 'back'
+      },
+      back: function() {
+        event.preventDefault();
+        bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+      },
       render: function() {
 
         $('#content').html( this.$el );
@@ -26,7 +33,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         }
 
         if( this.model.get('messages') ) {
-          _( this.model.get('messages') ).each(function(activity) {
+          _( this.model.get('messages').reverse() ).each(function(activity) {
             // if activity.message.question - do stuff with activity.question
 
             var $record = $('<div />').addClass("list-group-item");
