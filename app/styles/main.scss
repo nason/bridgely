@@ -63,6 +63,7 @@ footer {
 
 .backgrid-container {
   // Keep backgrid from scrolling
+  min-height: 400px;
   height: 100%;
   // overflow: none !important;
 }
