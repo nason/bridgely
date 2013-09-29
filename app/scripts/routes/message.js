@@ -31,7 +31,6 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         }
       },
       messageHistory: function() {
-        console.log('message history route');
         this.requireLogin( function() {
           new bridgelyApp.Views.MessagesView().render();
         });
