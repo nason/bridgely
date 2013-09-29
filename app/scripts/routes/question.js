@@ -24,11 +24,14 @@ bridgelyApp.Routers = bridgelyApp.Routers || {};
         })
       },
       viewQuestion: function(id) {
-        if( id === undefined || !Number(id) ) {
-          throw new Error('Route must be called with a valid id');
-        } else {
-          console.log('view question id: ' + id);
-        }
+        this.requireLogin(function() {
+          if( id === undefined || !Number(id) ) {
+            throw new Error('Route must be called with a valid id');
+          } else {
+            var question = new bridgelyApp.Models.QuestionModel({id: id})
+            new bridgelyApp.Views.QuestionView({model: question});
+          }
+        })
       },
       questionHistory: function() {
         console.log('view question history route');

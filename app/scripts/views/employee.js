@@ -9,11 +9,17 @@ bridgelyApp.Views = bridgelyApp.Views || {};
       model: bridgelyApp.Models.EmployeeModel,
       template: JST['app/scripts/templates/employee.ejs'],
       events: {
-        'click .back' : 'back'
+        'click .back' : 'back',
+        'click .question' : 'viewQuestion'
       },
       back: function() {
         event.preventDefault();
         bridgelyApp.DirectoryRouter.navigate('directory', {trigger: true});
+      },
+      viewQuestion: function() {
+        event.preventDefault();
+        var questionId = $(event.target).parent()[0].className.split('-')[1];
+        bridgelyApp.QuestionRouter.navigate('question/' + questionId, {trigger: true});
       },
       render: function() {
 
