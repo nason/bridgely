@@ -34,6 +34,16 @@ html, body {
   width: 300px;
 }
 
+.preloader {
+   position: absolute;
+   top: 30%;
+   left: 50%;
+   width: 88px;
+   height: 88px;
+   margin-top: -44px; /* Half the height */
+   margin-left: -44px; /* Half the width */
+}
+
 .btn {
     font-family: 'Gloria Hallelujah', sans-serif;
 }
