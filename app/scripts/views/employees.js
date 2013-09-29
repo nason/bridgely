@@ -83,7 +83,7 @@ bridgelyApp.Views = bridgelyApp.Views || {};
             }),
             formatter: _.extend({}, Backgrid.CellFormatter.prototype, {
               fromRaw: function (data) {
-                return $('<a />').attr('href', '#employee/' + data.id).text( data.name );
+                return $('<a />').attr('href', '#').addClass(' employee employee-' + data.id).text( data.name );
               }
             }),
             editable: false
@@ -123,12 +123,18 @@ bridgelyApp.Views = bridgelyApp.Views || {};
         ],
         template: JST['app/scripts/templates/employees.ejs'],
         events: {
+          'click .employee' : 'viewEmployee',
           'click .boolean-cell input:checkbox' : 'check',
           'click .tag-list-item input:checkbox' : 'toggleTag',
           'click #sms-selected' : 'smsSelected',
           'click #question-selected' : 'questionSelected',
           'click #sms-all' : 'smsAll',
           'click #question-all' : 'questionAll'
+        },
+        viewEmployee: function() {
+          event.preventDefault();
+          var employeeId = event.target.className.split('-')[1];
+          bridgelyApp.EmployeeRouter.navigate('employee/' + employeeId, {trigger: true});
         },
         check: function(event) {
           this.$('.send-selected').prop('disabled', false);
