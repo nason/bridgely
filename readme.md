@@ -20,7 +20,7 @@ Bridgely was built as a client project for [ForUs](http://www.forusall.com), whi
 
 I built Bridgely as two separate modules, a Backbone frontend and a Rails backend. I decided to take this route so the front-end could be customized and deployed for companies as necessary, and so the back-end could be scaled seperately to handle large directories and high volumes of SMS messages.
 
-For a simple deployment the frontend can be run on the same server as the API, see the Delpoyment Instructions below.
+For a simple deployment the frontend can be run on the same server as the API. This is the default configuration. If your backend is served seperately, you just have to change one variable...see the Delpoyment Instructions below.
 
 ### Tech Stack
 - Backbone.js
@@ -37,4 +37,4 @@ For a simple deployment the frontend can be run on the same server as the API, s
 
 ### Deployment Instructions
 - <tt>grunt server</tt> to run locally.
-- Otherwise copy <tt>dist</tt> folder to the server of your choice
+- Otherwise copy the <tt>dist</tt> folder to a publicly accessible folder on the server of your choice
