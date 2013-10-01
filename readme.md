@@ -17,8 +17,6 @@ Bridgely is a mobile communications platform that enables company comminucation 
 Bridgely was built as a client project for [ForUs](http://www.forusall.com), which will be using it to help corporations communicate information about retirement packages to their employees.
 
 # Screenshots
-Landing page:
-![Bridgely Welcome Screen](/screenshots/welcome.png "Landing page")
 
 Mobile Directory:
 ![Bridgely Company Directory](/screenshots/company_directory.png "Company Directory")
