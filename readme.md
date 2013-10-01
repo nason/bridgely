@@ -16,6 +16,10 @@ Bridgely is a mobile communications platform that enables company comminucation 
 
 Bridgely was built as a client project for [ForUs](http://www.forusall.com), which will be using it to help corporations communicate information about retirement packages to their employees.
 
+# Screenshots
+
+![Bridgely Welcome Screen](/screenshots/welcome.png "Landing page")
+
 # Front- & Back-end
 
 I built Bridgely as two separate modules, a Backbone frontend and a Rails backend. I decided to take this route so the front-end could be customized and deployed for companies as necessary, and so the back-end could be scaled seperately to handle large directories and high volumes of SMS messages.
