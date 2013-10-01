@@ -22,19 +22,19 @@ I built Bridgely as two separate modules, a Backbone frontend and a Rails backen
 
 For a simple deployment the frontend can be run on the same server as the API. This is the default configuration. If your backend is served seperately, you just have to change one variable...see the Delpoyment Instructions below.
 
-### Tech Stack
+# Tech Stack
 - Backbone.js
 - Backgrid.js
 - Underscore.js
 - jQuery
 - [Bridgely API](https://github.com/nason/bridgely-api/)
 
-### Configuration
+# Configuration
 1. If your backend is served elsewhere, point the bridgelyApp.apiUrl variable in <tt>app/scripts/main.js</tt> to your API
 2. <tt>npm install</tt>
 3. <tt>bower install</tt>
 4. <tt>grunt build</tt>
 
-### Deployment Instructions
+# Deployment Instructions
 - <tt>grunt server</tt> to run locally.
 - Otherwise copy the <tt>dist</tt> folder to a publicly accessible folder on the server of your choice
