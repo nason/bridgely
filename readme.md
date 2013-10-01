@@ -20,6 +20,20 @@ Bridgely was built as a client project for [ForUs](http://www.forusall.com), whi
 
 ![Bridgely Welcome Screen](/screenshots/welcome.png "Landing page")
 
+![Bridgely Company Directory](/screenshots/company_directory.png "Company Directory")
+
+![Bridgely Send Question](/screenshots/send_question.png "Send SMS Question")
+
+![Bridgely Show Columns](/screenshots/show_columns.png "Show Columns")
+
+![Bridgely Question Column](/screenshots/question_column.png "Question Column")
+
+![Bridgely Filter Employees](/screenshots/filter_employees.png "Filter Employees")
+
+![Bridgely Company Settings](/screenshots/company_settings.png "Company Settings")
+
+![Bridgely Company List](/screenshots/company_list.png "Company List")
+
 # Front- & Back-end
 
 I built Bridgely as two separate modules, a Backbone frontend and a Rails backend. I decided to take this route so the front-end could be customized and deployed for companies as necessary, and so the back-end could be scaled seperately to handle large directories and high volumes of SMS messages.
